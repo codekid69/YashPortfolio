@@ -1,12 +1,14 @@
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Hero from "@/components/sections/Hero";
-import Skills from "@/components/sections/Skills";
-import ClientProjects from "@/components/sections/ClientProjects";
-import PersonalProjects from "@/components/sections/PersonalProjects";
-import Experience from "@/components/sections/Experience";
-import About from "@/components/sections/About";
-import Contact from "@/components/sections/Contact";
+import dynamic from "next/dynamic";
+
+const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
+const Skills = dynamic(() => import("@/components/sections/Skills"), { ssr: false });
+const ClientProjects = dynamic(() => import("@/components/sections/ClientProjects"), { ssr: false });
+const PersonalProjects = dynamic(() => import("@/components/sections/PersonalProjects"), { ssr: false });
+const Experience = dynamic(() => import("@/components/sections/Experience"), { ssr: false });
+const About = dynamic(() => import("@/components/sections/About"), { ssr: false });
+const Contact = dynamic(() => import("@/components/sections/Contact"), { ssr: false });
 
 export default function Home() {
   return (

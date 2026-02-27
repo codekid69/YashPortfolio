@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yashbisht.com"), // Replace with actual production URL
+  metadataBase: new URL("https://yashbisht.vercel.app"),
   title: {
     default: "Yash Bisht | Full Stack & GenAI Software Engineer",
     template: "%s | Yash Bisht",
@@ -48,11 +49,11 @@ export const metadata: Metadata = {
     title: "Yash Bisht | Full Stack & GenAI Engineer",
     description:
       "Building premium, production-grade SaaS & GenAI systems. Explore my portfolio of client work and RAG architectures.",
-    url: "https://yashbisht.com", // Replace with actual URL
+    url: "https://yashbisht.vercel.app",
     siteName: "Yash Bisht Portfolio",
     images: [
       {
-        url: "/og-image.jpg", // Add an OG image to the public folder later if desired
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Yash Bisht - Full Stack & GenAI Engineer Portfolio",
@@ -80,8 +81,36 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://yashbisht.com",
+    canonical: "https://yashbisht.vercel.app",
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://yashbisht.vercel.app/#person",
+      name: "Yash Bisht",
+      jobTitle: "Full Stack & GenAI Software Engineer",
+      url: "https://yashbisht.vercel.app",
+      sameAs: [
+        "https://github.com/codekid69",
+        "https://linkedin.com/in/yash-bisht-codekid69",
+      ],
+      description:
+        "Full Stack Developer & GenAI Engineer specializing in scalable SaaS platforms, RAG architectures, and AI-powered product development.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://yashbisht.vercel.app/#website",
+      url: "https://yashbisht.vercel.app",
+      name: "Yash Bisht Portfolio",
+      publisher: {
+        "@id": "https://yashbisht.vercel.app/#person",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -94,6 +123,13 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+        >
+          {JSON.stringify(jsonLd)}
+        </Script>
         {/* Wireframe Grid Background */}
         <div className="wireframe-grid" aria-hidden="true" />
         {children}
