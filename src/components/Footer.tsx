@@ -7,7 +7,7 @@ export default function Footer() {
         <footer className="relative border-t border-dark-border/50">
             {/* Subtle ambient top glow */}
             <div
-                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[100px] pointer-events-none"
+                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[100px] pointer-events-none"
                 style={{
                     background: "radial-gradient(ellipse, rgba(0, 212, 255, 0.06), transparent 70%)",
                 }}
