@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
+import TiltCard from "@/components/ui/TiltCard";
 
 const experiences = [
     {
@@ -39,6 +40,8 @@ const experiences = [
     },
 ];
 
+const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
+
 export default function Experience() {
     return (
         <section id="experience" className="relative section-padding">
@@ -48,7 +51,7 @@ export default function Experience() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.7, ease: EASE_PREMIUM }}
                     className="text-center mb-16"
                 >
                     <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono text-neon-violet border border-neon-violet/20 bg-neon-violet/5 mb-4">
@@ -70,26 +73,27 @@ export default function Experience() {
                         {experiences.map((exp, i) => (
                             <motion.div
                                 key={exp.company}
-                                initial={{ opacity: 0, y: 30 }}
+                                initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{
-                                    duration: 0.6,
-                                    delay: i * 0.15,
-                                    ease: [0.16, 1, 0.3, 1],
+                                    duration: 0.7,
+                                    delay: i * 0.12,
+                                    ease: EASE_PREMIUM,
                                 }}
                                 className={`relative flex flex-col md:flex-row gap-8 ${i % 2 === 0
-                                        ? "md:flex-row"
-                                        : "md:flex-row-reverse"
+                                    ? "md:flex-row"
+                                    : "md:flex-row-reverse"
                                     }`}
                             >
-                                {/* Timeline Dot */}
+                                {/* Timeline Dot with pulse ring */}
                                 <div className="absolute left-[12px] md:left-1/2 md:-translate-x-1/2 top-0">
                                     <div
-                                        className="w-[16px] h-[16px] rounded-full border-2 timeline-dot"
+                                        className="w-[16px] h-[16px] rounded-full border-2 timeline-dot timeline-dot-pulse"
                                         style={{
                                             borderColor: exp.color,
                                             background: `${exp.color}30`,
+                                            color: exp.color,
                                         }}
                                     />
                                 </div>
@@ -97,14 +101,16 @@ export default function Experience() {
                                 {/* Content */}
                                 <div
                                     className={`ml-12 md:ml-0 md:w-[calc(50%-30px)] ${i % 2 === 0
-                                            ? "md:text-right md:pr-4"
-                                            : "md:text-left md:pl-4"
+                                        ? "md:text-right md:pr-4"
+                                        : "md:text-left md:pl-4"
                                         }`}
                                 >
-                                    <div
-                                        className={`glass-card rounded-xl p-6 ${i % 2 === 0
-                                                ? "md:ml-auto"
-                                                : "md:mr-auto"
+                                    <TiltCard
+                                        tiltIntensity={4}
+                                        glowColor={`${exp.color}10`}
+                                        className={`glass-card rounded-xl p-6 depth-shadow ${i % 2 === 0
+                                            ? "md:ml-auto"
+                                            : "md:mr-auto"
                                             }`}
                                     >
                                         <div className="flex items-center gap-2 mb-1 flex-wrap">
@@ -129,8 +135,8 @@ export default function Experience() {
                                         </p>
                                         <ul
                                             className={`space-y-2 ${i % 2 === 0
-                                                    ? "md:text-right"
-                                                    : "md:text-left"
+                                                ? "md:text-right"
+                                                : "md:text-left"
                                                 }`}
                                         >
                                             {exp.impacts.map((impact, j) => (
@@ -142,7 +148,7 @@ export default function Experience() {
                                                 </li>
                                             ))}
                                         </ul>
-                                    </div>
+                                    </TiltCard>
                                 </div>
 
                                 {/* Spacer for alternating layout */}

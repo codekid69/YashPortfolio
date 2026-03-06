@@ -129,6 +129,8 @@ const projects = [
     },
 ];
 
+const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
+
 export default function PersonalProjects() {
     const [expanded, setExpanded] = useState<number | null>(null);
 
@@ -140,7 +142,7 @@ export default function PersonalProjects() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.7, ease: EASE_PREMIUM }}
                     className="mb-16"
                 >
                     <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono text-cyber-green border border-cyber-green/20 bg-cyber-green/5 mb-4">
@@ -168,11 +170,14 @@ export default function PersonalProjects() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.5, delay: i * 0.1 }}
-                                className="glass-card rounded-2xl overflow-hidden"
+                                transition={{ duration: 0.6, delay: i * 0.08, ease: EASE_PREMIUM }}
+                                className="glass-card rounded-2xl overflow-hidden transition-all duration-500"
                                 style={{
                                     borderColor: isExpanded
                                         ? `${project.color}40`
+                                        : undefined,
+                                    boxShadow: isExpanded
+                                        ? `0 0 40px ${project.color}10, 0 8px 32px rgba(0,0,0,0.2)`
                                         : undefined,
                                 }}
                             >
@@ -181,14 +186,17 @@ export default function PersonalProjects() {
                                     onClick={() =>
                                         setExpanded(isExpanded ? null : i)
                                     }
-                                    className="w-full flex items-center justify-between p-6 text-left"
+                                    className="w-full flex items-center justify-between p-6 text-left group"
                                 >
                                     <div className="flex items-center gap-4">
                                         <div
-                                            className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                                            className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-shadow duration-500"
                                             style={{
                                                 background: `${project.color}15`,
                                                 border: `1px solid ${project.color}30`,
+                                                boxShadow: isExpanded
+                                                    ? `0 0 20px ${project.color}30`
+                                                    : "none",
                                             }}
                                         >
                                             <Icon
@@ -197,7 +205,7 @@ export default function PersonalProjects() {
                                             />
                                         </div>
                                         <div>
-                                            <h3 className="text-lg font-heading font-semibold text-text-primary">
+                                            <h3 className="text-lg font-heading font-semibold text-text-primary group-hover:text-white transition-colors duration-300">
                                                 {project.name}
                                             </h3>
                                             <p className="text-sm text-text-muted mt-0.5">
@@ -207,7 +215,7 @@ export default function PersonalProjects() {
                                     </div>
                                     <motion.div
                                         animate={{ rotate: isExpanded ? 180 : 0 }}
-                                        transition={{ duration: 0.3 }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
                                         className="shrink-0 ml-4 hidden sm:block"
                                     >
                                         <ChevronDown
@@ -225,8 +233,8 @@ export default function PersonalProjects() {
                                             animate={{ height: "auto", opacity: 1 }}
                                             exit={{ height: 0, opacity: 0 }}
                                             transition={{
-                                                duration: 0.4,
-                                                ease: [0.16, 1, 0.3, 1],
+                                                height: { type: "spring", stiffness: 200, damping: 30 },
+                                                opacity: { duration: 0.3, ease: "easeOut" },
                                             }}
                                             className="overflow-hidden"
                                         >
@@ -237,25 +245,36 @@ export default function PersonalProjects() {
                                                     {/* Left Column: Details */}
                                                     <div className="space-y-6">
                                                         {/* Solution */}
-                                                        <div>
+                                                        <motion.div
+                                                            initial={{ opacity: 0, y: 10 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            transition={{ delay: 0.1, duration: 0.4 }}
+                                                        >
                                                             <p className="text-sm font-mono mb-2" style={{ color: project.color }}>
                                                                 {"// Solution"}
                                                             </p>
                                                             <p className="text-text-secondary text-sm leading-relaxed">
                                                                 {project.solution}
                                                             </p>
-                                                        </div>
+                                                        </motion.div>
 
                                                         {/* Architecture Flow */}
-                                                        <div>
+                                                        <motion.div
+                                                            initial={{ opacity: 0, y: 10 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            transition={{ delay: 0.15, duration: 0.4 }}
+                                                        >
                                                             <p className="text-sm font-mono mb-3" style={{ color: project.color }}>
                                                                 {"// Architecture"}
                                                             </p>
                                                             <div className="flex flex-wrap items-center gap-2">
                                                                 {project.architecture.map(
                                                                     (step, si) => (
-                                                                        <div
+                                                                        <motion.div
                                                                             key={step}
+                                                                            initial={{ opacity: 0, x: -10 }}
+                                                                            animate={{ opacity: 1, x: 0 }}
+                                                                            transition={{ delay: 0.2 + si * 0.06 }}
                                                                             className="flex items-center gap-2"
                                                                         >
                                                                             <span className="px-3 py-1.5 rounded-lg text-xs font-mono bg-white/5 text-text-secondary border border-dark-border/30">
@@ -269,43 +288,57 @@ export default function PersonalProjects() {
                                                                                     →
                                                                                 </span>
                                                                             )}
-                                                                        </div>
+                                                                        </motion.div>
                                                                     )
                                                                 )}
                                                             </div>
-                                                        </div>
+                                                        </motion.div>
 
                                                         {/* AI/LLM Detail */}
-                                                        <div>
+                                                        <motion.div
+                                                            initial={{ opacity: 0, y: 10 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            transition={{ delay: 0.2, duration: 0.4 }}
+                                                        >
                                                             <p className="text-sm font-mono mb-2" style={{ color: project.color }}>
                                                                 {"// AI Layer"}
                                                             </p>
                                                             <p className="text-text-secondary text-sm leading-relaxed">
                                                                 {project.aiDetail}
                                                             </p>
-                                                        </div>
+                                                        </motion.div>
 
                                                         {/* Live Link Button */}
                                                         {project.link !== "#" && (
-                                                            <div className="pt-2">
+                                                            <motion.div
+                                                                initial={{ opacity: 0 }}
+                                                                animate={{ opacity: 1 }}
+                                                                transition={{ delay: 0.3 }}
+                                                                className="pt-2"
+                                                            >
                                                                 <a
                                                                     href={project.link}
                                                                     target="_blank"
                                                                     rel="noopener noreferrer"
-                                                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium border text-text-primary hover:bg-white/5 transition-colors duration-300"
+                                                                    className="group/btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium border text-text-primary hover:bg-white/5 transition-all duration-300"
                                                                     style={{ borderColor: `${project.color}40`, color: project.color }}
                                                                 >
                                                                     View Live App
-                                                                    <ExternalLink size={14} />
+                                                                    <ExternalLink size={14} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" />
                                                                 </a>
-                                                            </div>
+                                                            </motion.div>
                                                         )}
                                                     </div>
 
                                                     {/* Right Column: Image & Stack/Impact */}
                                                     <div className="space-y-6">
                                                         {project.image && (
-                                                            <div className="relative aspect-video rounded-xl overflow-hidden border border-dark-border/30 group">
+                                                            <motion.div
+                                                                initial={{ opacity: 0, scale: 0.97 }}
+                                                                animate={{ opacity: 1, scale: 1 }}
+                                                                transition={{ delay: 0.15, duration: 0.5, ease: EASE_PREMIUM }}
+                                                                className="relative aspect-video rounded-xl overflow-hidden border border-dark-border/30 group depth-shadow"
+                                                            >
                                                                 <Image
                                                                     src={project.image}
                                                                     alt={project.name}
@@ -313,11 +346,15 @@ export default function PersonalProjects() {
                                                                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                                                                 />
                                                                 <div className="absolute inset-0 bg-gradient-to-t from-dark-base/60 via-transparent to-transparent pointer-events-none" />
-                                                            </div>
+                                                            </motion.div>
                                                         )}
 
                                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                                            <div>
+                                                            <motion.div
+                                                                initial={{ opacity: 0, y: 10 }}
+                                                                animate={{ opacity: 1, y: 0 }}
+                                                                transition={{ delay: 0.25, duration: 0.4 }}
+                                                            >
                                                                 <p className="text-sm font-mono mb-2" style={{ color: project.color }}>
                                                                     {"// Stack"}
                                                                 </p>
@@ -333,15 +370,19 @@ export default function PersonalProjects() {
                                                                         )
                                                                     )}
                                                                 </div>
-                                                            </div>
-                                                            <div>
+                                                            </motion.div>
+                                                            <motion.div
+                                                                initial={{ opacity: 0, y: 10 }}
+                                                                animate={{ opacity: 1, y: 0 }}
+                                                                transition={{ delay: 0.3, duration: 0.4 }}
+                                                            >
                                                                 <p className="text-sm font-mono mb-2" style={{ color: project.color }}>
                                                                     {"// Impact"}
                                                                 </p>
                                                                 <p className="text-text-secondary text-sm leading-relaxed">
                                                                     {project.impact}
                                                                 </p>
-                                                            </div>
+                                                            </motion.div>
                                                         </div>
                                                     </div>
                                                 </div>

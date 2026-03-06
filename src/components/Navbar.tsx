@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 
 const navLinks = [
     { name: "Work", href: "#work" },
@@ -16,21 +17,34 @@ const navLinks = [
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileOpen, setIsMobileOpen] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
+    const { scrollY } = useScroll();
 
+    // Hide navbar on scroll down, show on scroll up
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious() ?? 0;
+        setIsScrolled(latest > 20);
+        if (latest > previous && latest > 150) {
+            setIsHidden(true);
+        } else {
+            setIsHidden(false);
+        }
+    });
+
+    // Lock body scroll when mobile menu is open
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 20);
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        document.body.style.overflow = isMobileOpen ? "hidden" : "";
+        return () => { document.body.style.overflow = ""; };
+    }, [isMobileOpen]);
 
     return (
         <motion.nav
             initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            animate={{ y: isHidden ? -100 : 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 30 }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                    ? "glass-strong shadow-lg shadow-black/20"
-                    : "bg-transparent"
+                ? "glass-strong shadow-lg shadow-black/20"
+                : "bg-transparent"
                 }`}
         >
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -94,7 +108,7 @@ export default function Navbar() {
                                     href={link.href}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: i * 0.05 }}
+                                    transition={{ delay: i * 0.06, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                                     onClick={() => setIsMobileOpen(false)}
                                     className="block px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-white/5 rounded-lg transition-all duration-200"
                                 >
@@ -112,6 +126,9 @@ export default function Navbar() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Scroll Progress Bar */}
+            <ScrollProgress />
         </motion.nav>
     );
 }

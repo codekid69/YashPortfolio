@@ -10,6 +10,7 @@ import {
     Cloud,
     ChevronRight,
 } from "lucide-react";
+import TiltCard from "@/components/ui/TiltCard";
 
 const categories = [
     {
@@ -75,6 +76,8 @@ const categories = [
     },
 ];
 
+const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
+
 export default function Skills() {
     const [expanded, setExpanded] = useState<number | null>(null);
 
@@ -86,7 +89,7 @@ export default function Skills() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.7, ease: EASE_PREMIUM }}
                     className="text-center mb-16"
                 >
                     <span className="inline-block px-4 py-1.5 rounded-full text-xs font-mono text-cyber-blue border border-cyber-blue/20 bg-cyber-blue/5 mb-4">
@@ -106,90 +109,101 @@ export default function Skills() {
                         return (
                             <motion.div
                                 key={cat.name}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                                 viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.5, delay: i * 0.1 }}
-                                onClick={() => setExpanded(isExpanded ? null : i)}
-                                className={`group relative glass-card rounded-2xl p-6 cursor-pointer transition-all duration-500 ${isExpanded ? "md:col-span-2 lg:col-span-1" : ""
-                                    }`}
-                                style={{
-                                    borderColor: isExpanded
-                                        ? `${cat.color}33`
-                                        : undefined,
-                                }}
+                                transition={{ duration: 0.6, delay: i * 0.08, ease: EASE_PREMIUM }}
                             >
-                                {/* Hover Glow */}
-                                <div
-                                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                                    style={{
-                                        background: `radial-gradient(ellipse at center, ${cat.color}08, transparent 70%)`,
-                                    }}
-                                />
-
-                                <div className="relative z-10">
-                                    {/* Header */}
-                                    <div className="flex items-center justify-between mb-5">
-                                        <div className="flex items-center gap-3">
-                                            <div
-                                                className="w-10 h-10 rounded-lg flex items-center justify-center"
-                                                style={{
-                                                    background: `${cat.color}15`,
-                                                    border: `1px solid ${cat.color}30`,
-                                                }}
-                                            >
-                                                <Icon size={20} style={{ color: cat.color }} />
+                                <TiltCard
+                                    tiltIntensity={5}
+                                    glowColor={`${cat.color}12`}
+                                    className={`group glass-card rounded-2xl p-6 cursor-pointer transition-all duration-500 ${isExpanded ? "md:col-span-2 lg:col-span-1" : ""
+                                        }`}
+                                >
+                                    <div
+                                        onClick={() => setExpanded(isExpanded ? null : i)}
+                                        className="relative z-10"
+                                    >
+                                        {/* Header */}
+                                        <div className="flex items-center justify-between mb-5">
+                                            <div className="flex items-center gap-3">
+                                                <div
+                                                    className="w-10 h-10 rounded-lg flex items-center justify-center transition-shadow duration-500"
+                                                    style={{
+                                                        background: `${cat.color}15`,
+                                                        border: `1px solid ${cat.color}30`,
+                                                        boxShadow: isExpanded
+                                                            ? `0 0 20px ${cat.color}25`
+                                                            : "none",
+                                                    }}
+                                                >
+                                                    <Icon size={20} style={{ color: cat.color }} />
+                                                </div>
+                                                <h3 className="text-lg font-heading font-semibold text-text-primary">
+                                                    {cat.name}
+                                                </h3>
                                             </div>
-                                            <h3 className="text-lg font-heading font-semibold text-text-primary">
-                                                {cat.name}
-                                            </h3>
+                                            <motion.div
+                                                animate={{ rotate: isExpanded ? 90 : 0 }}
+                                                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                            >
+                                                <ChevronRight
+                                                    size={18}
+                                                    className="text-text-muted"
+                                                />
+                                            </motion.div>
                                         </div>
+
+                                        {/* Tech Badges */}
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            {cat.techs.map((tech) => (
+                                                <span
+                                                    key={tech}
+                                                    className="px-3 py-1 rounded-md text-xs font-mono bg-white/5 text-text-secondary border border-dark-border/50 hover:border-cyber-blue/30 transition-colors duration-300"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        {/* Expanded Content */}
                                         <motion.div
-                                            animate={{ rotate: isExpanded ? 90 : 0 }}
-                                            transition={{ duration: 0.3 }}
+                                            initial={false}
+                                            animate={{
+                                                height: isExpanded ? "auto" : 0,
+                                                opacity: isExpanded ? 1 : 0,
+                                            }}
+                                            transition={{
+                                                height: { type: "spring", stiffness: 250, damping: 30 },
+                                                opacity: { duration: 0.3 },
+                                            }}
+                                            className="overflow-hidden"
                                         >
-                                            <ChevronRight
-                                                size={18}
-                                                className="text-text-muted"
-                                            />
+                                            <div className="pt-4 border-t border-dark-border/50">
+                                                <p className="text-sm text-text-secondary leading-relaxed">
+                                                    <span
+                                                        className="font-mono text-xs mr-2"
+                                                        style={{ color: cat.color }}
+                                                    >
+                                                        {"//"}
+                                                    </span>
+                                                    {cat.usage}
+                                                </p>
+                                            </div>
                                         </motion.div>
                                     </div>
 
-                                    {/* Tech Badges */}
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {cat.techs.map((tech) => (
-                                            <span
-                                                key={tech}
-                                                className="px-3 py-1 rounded-md text-xs font-mono bg-white/5 text-text-secondary border border-dark-border/50"
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-
-                                    {/* Expanded Content */}
-                                    <motion.div
-                                        initial={false}
-                                        animate={{
-                                            height: isExpanded ? "auto" : 0,
-                                            opacity: isExpanded ? 1 : 0,
-                                        }}
-                                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                                        className="overflow-hidden"
-                                    >
-                                        <div className="pt-4 border-t border-dark-border/50">
-                                            <p className="text-sm text-text-secondary leading-relaxed">
-                                                <span
-                                                    className="font-mono text-xs mr-2"
-                                                    style={{ color: cat.color }}
-                                                >
-                                                    {"//"}
-                                                </span>
-                                                {cat.usage}
-                                            </p>
-                                        </div>
-                                    </motion.div>
-                                </div>
+                                    {/* Expanded border glow */}
+                                    {isExpanded && (
+                                        <div
+                                            className="absolute inset-0 rounded-2xl pointer-events-none"
+                                            style={{
+                                                border: `1px solid ${cat.color}33`,
+                                                boxShadow: `inset 0 0 30px ${cat.color}08`,
+                                            }}
+                                        />
+                                    )}
+                                </TiltCard>
                             </motion.div>
                         );
                     })}

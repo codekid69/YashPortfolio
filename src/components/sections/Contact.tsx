@@ -10,6 +10,9 @@ import {
     Download,
     ArrowUpRight,
 } from "lucide-react";
+import TiltCard from "@/components/ui/TiltCard";
+
+const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -93,7 +96,7 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.7, ease: EASE_PREMIUM }}
                     className="text-center mb-16"
                 >
                     <span className="inline-block px-4 py-1.5 rounded-full text-xs font-mono text-cyber-blue border border-cyber-blue/20 bg-cyber-blue/5 mb-4">
@@ -115,7 +118,7 @@ export default function Contact() {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
+                        transition={{ duration: 0.7, delay: 0.1, ease: EASE_PREMIUM }}
                         className="lg:col-span-3"
                     >
                         <form onSubmit={handleSubmit} className="space-y-5">
@@ -178,21 +181,24 @@ export default function Contact() {
                                     placeholder="Tell me about your project..."
                                 />
                             </div>
-                            <button
+                            <motion.button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="group flex items-center gap-2 px-8 py-3.5 rounded-xl font-medium text-sm bg-gradient-to-r from-cyber-blue/10 to-neon-violet/10 border border-cyber-blue/40 text-cyber-blue hover:border-cyber-blue/80 hover:shadow-[0_0_30px_rgba(0,212,255,0.2)] disabled:opacity-50 transition-all duration-300"
+                                whileHover={{ scale: 1.02, y: -1 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="group flex items-center gap-2 px-8 py-3.5 rounded-xl font-medium text-sm bg-gradient-to-r from-cyber-blue/10 to-neon-violet/10 border border-cyber-blue/40 text-cyber-blue hover:border-cyber-blue/80 hover:shadow-[0_0_30px_rgba(0,212,255,0.2)] disabled:opacity-50 transition-all duration-300 shimmer"
                             >
                                 {isSubmitting ? "Sending..." : "Send Message"}
                                 <Send
                                     size={16}
                                     className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
                                 />
-                            </button>
+                            </motion.button>
                             {submitStatus === "success" && (
                                 <motion.p
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
                                     className="text-sm text-cyber-green mt-4 text-center font-medium"
                                 >
                                     Message sent successfully! I&apos;ll get back to you soon.
@@ -202,6 +208,7 @@ export default function Contact() {
                                 <motion.p
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
                                     className="text-sm text-neon-pink mt-4 text-center font-medium"
                                 >
                                     Something went wrong. Please try again or email me directly.
@@ -215,61 +222,85 @@ export default function Contact() {
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.2, ease: EASE_PREMIUM }}
                         className="lg:col-span-2 space-y-4"
                     >
-                        {socials.map((social) => {
+                        {socials.map((social, i) => {
                             const Icon = social.icon;
                             return (
-                                <a
+                                <motion.div
                                     key={social.name}
-                                    href={social.href}
-                                    target={social.href.startsWith("http") ? "_blank" : undefined}
-                                    rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                    className="group flex items-center gap-4 glass-card rounded-xl p-4 transition-all duration-300"
+                                    initial={{ opacity: 0, y: 15 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.3 + i * 0.08, ease: EASE_PREMIUM }}
                                 >
-                                    <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-white/5 border border-dark-border/50 group-hover:border-cyber-blue/30 transition-colors duration-300">
-                                        <Icon
-                                            size={18}
-                                            className="text-text-muted group-hover:text-cyber-blue transition-colors duration-300"
-                                        />
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                        <p className="text-sm font-medium text-text-primary">
-                                            {social.name}
-                                        </p>
-                                        <p className="text-xs text-text-muted truncate">
-                                            {social.label}
-                                        </p>
-                                    </div>
-                                    <ArrowUpRight
-                                        size={16}
-                                        className="text-text-muted group-hover:text-cyber-blue shrink-0 transition-colors duration-300"
-                                    />
-                                </a>
+                                    <TiltCard
+                                        tiltIntensity={4}
+                                        glowColor="rgba(0, 212, 255, 0.06)"
+                                    >
+                                        <a
+                                            href={social.href}
+                                            target={social.href.startsWith("http") ? "_blank" : undefined}
+                                            rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                            className="group flex items-center gap-4 glass-card rounded-xl p-4 transition-all duration-300"
+                                        >
+                                            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-white/5 border border-dark-border/50 group-hover:border-cyber-blue/30 group-hover:shadow-[0_0_15px_rgba(0,212,255,0.1)] transition-all duration-300">
+                                                <Icon
+                                                    size={18}
+                                                    className="text-text-muted group-hover:text-cyber-blue transition-colors duration-300"
+                                                />
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-sm font-medium text-text-primary">
+                                                    {social.name}
+                                                </p>
+                                                <p className="text-xs text-text-muted truncate">
+                                                    {social.label}
+                                                </p>
+                                            </div>
+                                            <ArrowUpRight
+                                                size={16}
+                                                className="text-text-muted group-hover:text-cyber-blue shrink-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                            />
+                                        </a>
+                                    </TiltCard>
+                                </motion.div>
                             );
                         })}
 
                         {/* Resume Download */}
-                        <a
-                            href="/Yash_Bisht_Resume.pdf"
-                            download
-                            className="group flex items-center gap-4 glass-card rounded-xl p-4 border-dashed transition-all duration-300"
+                        <motion.div
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5, ease: EASE_PREMIUM }}
                         >
-                            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-neon-violet/10 border border-neon-violet/20">
-                                <Download size={18} className="text-neon-violet" />
-                            </div>
-                            <div className="flex-1">
-                                <p className="text-sm font-medium text-text-primary">
-                                    Download Resume
-                                </p>
-                                <p className="text-xs text-text-muted">PDF • Updated 2025</p>
-                            </div>
-                            <ArrowUpRight
-                                size={16}
-                                className="text-text-muted group-hover:text-neon-violet shrink-0 transition-colors duration-300"
-                            />
-                        </a>
+                            <TiltCard
+                                tiltIntensity={4}
+                                glowColor="rgba(124, 58, 237, 0.08)"
+                            >
+                                <a
+                                    href="/Yash_Bisht_Resume.pdf"
+                                    download
+                                    className="group flex items-center gap-4 glass-card rounded-xl p-4 border-dashed transition-all duration-300"
+                                >
+                                    <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-neon-violet/10 border border-neon-violet/20 group-hover:shadow-[0_0_15px_rgba(124,58,237,0.15)] transition-all duration-300">
+                                        <Download size={18} className="text-neon-violet" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="text-sm font-medium text-text-primary">
+                                            Download Resume
+                                        </p>
+                                        <p className="text-xs text-text-muted">PDF • Updated 2025</p>
+                                    </div>
+                                    <ArrowUpRight
+                                        size={16}
+                                        className="text-text-muted group-hover:text-neon-violet shrink-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                    />
+                                </a>
+                            </TiltCard>
+                        </motion.div>
                     </motion.div>
                 </div>
             </div>

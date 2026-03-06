@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ExternalLink, Shield } from "lucide-react";
+import TiltCard from "@/components/ui/TiltCard";
+import GlowEffect from "@/components/ui/GlowEffect";
 
 const projects = [
     {
@@ -37,6 +39,8 @@ const projects = [
     },
 ];
 
+const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
+
 export default function ClientProjects() {
     return (
         <section id="work" className="relative section-padding">
@@ -46,7 +50,7 @@ export default function ClientProjects() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.7, ease: EASE_PREMIUM }}
                     className="mb-16"
                 >
                     <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono text-cyber-blue border border-cyber-blue/20 bg-cyber-blue/5 mb-4">
@@ -63,27 +67,28 @@ export default function ClientProjects() {
                 </motion.div>
 
                 {/* Project Cards */}
-                <div className="space-y-20">
+                <div className="space-y-24">
                     {projects.map((project, i) => (
                         <motion.div
                             key={project.name}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, y: 50, scale: 0.97 }}
+                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{
-                                duration: 0.7,
+                                duration: 0.8,
                                 delay: 0.1,
-                                ease: [0.16, 1, 0.3, 1],
+                                ease: EASE_PREMIUM,
                             }}
                             className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center ${i % 2 === 1 ? "lg:direction-rtl" : ""
                                 }`}
                         >
                             {/* Image */}
-                            <div
-                                className={`relative group ${i % 2 === 1 ? "lg:order-2" : ""
-                                    }`}
+                            <TiltCard
+                                tiltIntensity={6}
+                                glowColor="rgba(0, 212, 255, 0.06)"
+                                className={`relative group ${i % 2 === 1 ? "lg:order-2" : ""}`}
                             >
-                                <div className="relative rounded-2xl overflow-hidden border border-dark-border/30">
+                                <div className="relative rounded-2xl overflow-hidden border border-dark-border/30 depth-shadow">
                                     {/* Client Badge */}
                                     <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-dark-base/80 backdrop-blur-sm border border-dark-border/50">
                                         <div className="w-1.5 h-1.5 rounded-full bg-cyber-green" />
@@ -98,25 +103,30 @@ export default function ClientProjects() {
                                             src={project.image}
                                             alt={`${project.name} screenshot`}
                                             fill
-                                            className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                                            className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.07]"
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-dark-base/40 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-dark-base/50 to-transparent" />
                                     </div>
                                 </div>
 
                                 {/* Decorative Glow */}
-                                <div
-                                    className="absolute -inset-4 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"
-                                    style={{
-                                        background:
-                                            "radial-gradient(250px at center, rgba(0, 212, 255, 0.06), transparent)",
-                                    }}
+                                <GlowEffect
+                                    color="rgba(0, 212, 255, 0.06)"
+                                    size="350px"
+                                    className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                                    animate={false}
                                 />
-                            </div>
+                            </TiltCard>
 
                             {/* Content */}
-                            <div className={i % 2 === 1 ? "lg:order-1" : ""}>
+                            <motion.div
+                                className={i % 2 === 1 ? "lg:order-1" : ""}
+                                initial={{ opacity: 0, x: i % 2 === 0 ? 20 : -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.7, delay: 0.2, ease: EASE_PREMIUM }}
+                            >
                                 <p
                                     className="text-sm font-mono text-neon-violet mb-2 tracking-wide"
                                 >
@@ -147,7 +157,7 @@ export default function ClientProjects() {
                                     {project.stack.map((tech) => (
                                         <span
                                             key={tech}
-                                            className="px-3 py-1 rounded-md text-xs font-mono bg-white/5 text-text-secondary border border-dark-border/50"
+                                            className="px-3 py-1 rounded-md text-xs font-mono bg-white/5 text-text-secondary border border-dark-border/50 hover:border-cyber-blue/30 transition-colors duration-300"
                                         >
                                             {tech}
                                         </span>
@@ -167,7 +177,7 @@ export default function ClientProjects() {
                                         className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300"
                                     />
                                 </a>
-                            </div>
+                            </motion.div>
                         </motion.div>
                     ))}
                 </div>

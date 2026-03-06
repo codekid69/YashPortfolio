@@ -2,6 +2,18 @@
 
 import { motion } from "framer-motion";
 import { Zap, Target, Layers } from "lucide-react";
+import TiltCard from "@/components/ui/TiltCard";
+import GlowEffect from "@/components/ui/GlowEffect";
+import dynamic from "next/dynamic";
+
+const Avatar3D = dynamic(() => import("@/components/ui/Avatar3D"), {
+    ssr: false,
+    loading: () => (
+        <div className="w-full h-full flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full border-2 border-cyber-blue/30 border-t-cyber-blue animate-spin" />
+        </div>
+    )
+});
 
 const traits = [
     {
@@ -24,6 +36,8 @@ const traits = [
     },
 ];
 
+const EASE_PREMIUM = [0.16, 1, 0.3, 1] as const;
+
 export default function About() {
     return (
         <section id="about" className="relative section-padding">
@@ -34,37 +48,25 @@ export default function About() {
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative flex items-center justify-center"
+                        transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+                        className="relative flex items-center justify-center w-full min-h-[400px] lg:min-h-[600px]"
                     >
-                        <div className="relative">
-                            {/* Abstract geometric wireframe */}
-                            <div className="w-64 h-64 md:w-80 md:h-80 relative">
-                                {/* Outer rotating ring */}
-                                <div className="absolute inset-0 rounded-full border border-dark-border/30 animate-[spin_30s_linear_infinite]">
-                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cyber-blue" />
-                                </div>
-                                {/* Middle ring */}
-                                <div className="absolute inset-8 rounded-full border border-neon-violet/20 animate-[spin_20s_linear_infinite_reverse]">
-                                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-neon-violet" />
-                                </div>
-                                {/* Inner hexagonal shape */}
-                                <div className="absolute inset-16 rounded-2xl border border-cyber-green/15 rotate-45 animate-[spin_25s_linear_infinite]">
-                                    <div className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-cyber-green" />
-                                </div>
-                                {/* Center monogram */}
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <div className="text-center">
-                                        <span className="text-5xl md:text-6xl font-heading font-bold gradient-text">
-                                            YB
-                                        </span>
-                                        <div className="w-16 h-[2px] mx-auto mt-2 bg-gradient-to-r from-cyber-blue via-neon-violet to-cyber-green rounded-full" />
-                                    </div>
-                                </div>
-                            </div>
-                            {/* Background glow */}
-                            <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyber-blue/5 via-neon-violet/5 to-transparent rounded-full blur-3xl" />
+                        {/* Center 3D Avatar */}
+                        <div className="absolute inset-0 z-10 w-full h-full flex items-center justify-center">
+                            <Avatar3D />
                         </div>
+                        {/* Background glow - enhanced */}
+                        <GlowEffect
+                            color="rgba(0, 212, 255, 0.06)"
+                            size="400px"
+                            className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                        />
+                        <GlowEffect
+                            color="rgba(124, 58, 237, 0.04)"
+                            size="350px"
+                            className="top-1/3 left-1/3"
+                            animate={false}
+                        />
                     </motion.div>
 
                     {/* Right - Bio */}
@@ -72,7 +74,7 @@ export default function About() {
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.8, ease: EASE_PREMIUM }}
                     >
                         <span className="inline-block px-4 py-1.5 rounded-full text-xs font-mono text-cyber-blue border border-cyber-blue/20 bg-cyber-blue/5 mb-6">
                             ABOUT
@@ -92,7 +94,7 @@ export default function About() {
                         </p>
 
                         {/* Engineering Philosophy Quote */}
-                        <div className="glass-card rounded-xl p-5 mb-8 border-l-2 border-cyber-blue/40">
+                        <div className="glass-card rounded-xl p-5 mb-8 border-l-2 border-cyber-blue/40 shimmer">
                             <p className="font-mono text-sm text-text-secondary leading-relaxed">
                                 <span className="text-cyber-blue">const</span>{" "}
                                 <span className="text-cyber-green">philosophy</span>{" "}
@@ -112,24 +114,29 @@ export default function About() {
                                         initial={{ opacity: 0, y: 15 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                                        className="glass-card rounded-xl p-4 text-center"
+                                        transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: EASE_PREMIUM }}
                                     >
-                                        <div
-                                            className="w-9 h-9 rounded-lg flex items-center justify-center mx-auto mb-2"
-                                            style={{
-                                                background: `${trait.color}15`,
-                                                border: `1px solid ${trait.color}25`,
-                                            }}
+                                        <TiltCard
+                                            tiltIntensity={6}
+                                            glowColor={`${trait.color}15`}
+                                            className="glass-card rounded-xl p-4 text-center"
                                         >
-                                            <Icon size={18} style={{ color: trait.color }} />
-                                        </div>
-                                        <h4 className="text-sm font-semibold text-text-primary mb-1">
-                                            {trait.title}
-                                        </h4>
-                                        <p className="text-xs text-text-muted leading-relaxed">
-                                            {trait.description}
-                                        </p>
+                                            <div
+                                                className="w-9 h-9 rounded-lg flex items-center justify-center mx-auto mb-2"
+                                                style={{
+                                                    background: `${trait.color}15`,
+                                                    border: `1px solid ${trait.color}25`,
+                                                }}
+                                            >
+                                                <Icon size={18} style={{ color: trait.color }} />
+                                            </div>
+                                            <h4 className="text-sm font-semibold text-text-primary mb-1">
+                                                {trait.title}
+                                            </h4>
+                                            <p className="text-xs text-text-muted leading-relaxed">
+                                                {trait.description}
+                                            </p>
+                                        </TiltCard>
                                     </motion.div>
                                 );
                             })}

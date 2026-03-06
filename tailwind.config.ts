@@ -35,6 +35,10 @@ const config: Config = {
         "trace-border": "traceBorder 3s linear infinite",
         "fade-in": "fadeIn 0.6s ease-out",
         "slide-up": "slideUp 0.6s ease-out",
+        "ambient-pulse": "ambientPulse 4s ease-in-out infinite",
+        shimmer: "shimmer 3s ease-in-out infinite",
+        "tilt-in": "tiltIn 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
+        "grid-drift": "gridDrift 25s linear infinite",
       },
       keyframes: {
         float: {
@@ -61,11 +65,29 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        ambientPulse: {
+          "0%, 100%": { opacity: "0.5", transform: "scale(1)" },
+          "50%": { opacity: "1", transform: "scale(1.05)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "200% 0" },
+          "100%": { backgroundPosition: "-200% 0" },
+        },
+        tiltIn: {
+          "0%": { opacity: "0", transform: "perspective(600px) rotateX(8deg) translateY(20px)" },
+          "100%": { opacity: "1", transform: "perspective(600px) rotateX(0deg) translateY(0)" },
+        },
+        gridDrift: {
+          "0%": { backgroundPosition: "0 0, 0 0" },
+          "100%": { backgroundPosition: "60px 60px, 60px 60px" },
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "cyber-gradient": "linear-gradient(135deg, #00D4FF, #7C3AED)",
         "cyber-gradient-alt": "linear-gradient(135deg, #7C3AED, #FF006E)",
+        "mesh-gradient": "radial-gradient(at 40% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%), radial-gradient(at 80% 80%, rgba(124, 58, 237, 0.06) 0%, transparent 50%)",
+        "depth-gradient": "linear-gradient(180deg, transparent 0%, rgba(5, 8, 22, 0.8) 100%)",
       },
     },
   },
