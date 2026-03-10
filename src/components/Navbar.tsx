@@ -42,6 +42,7 @@ export default function Navbar() {
             initial={{ y: -100 }}
             animate={{ y: isHidden ? -100 : 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
+            aria-label="Main navigation"
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
                 ? "glass-strong shadow-lg shadow-black/20"
                 : "bg-transparent"
@@ -85,6 +86,7 @@ export default function Navbar() {
                         onClick={() => setIsMobileOpen(!isMobileOpen)}
                         className="md:hidden p-2 text-text-secondary hover:text-text-primary transition-colors"
                         aria-label="Toggle menu"
+                        aria-expanded={isMobileOpen}
                     >
                         {isMobileOpen ? <X size={22} /> : <Menu size={22} />}
                     </button>

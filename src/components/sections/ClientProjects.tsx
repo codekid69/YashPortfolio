@@ -101,8 +101,9 @@ export default function ClientProjects() {
                                     <div className="relative aspect-[16/10] overflow-hidden">
                                         <Image
                                             src={project.image}
-                                            alt={`${project.name} screenshot`}
+                                            alt={`${project.name} — ${project.tagline}. Client project by Yash Bisht`}
                                             fill
+                                            loading="lazy"
                                             className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.07]"
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                         />

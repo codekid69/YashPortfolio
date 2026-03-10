@@ -84,6 +84,7 @@ export default function Contact() {
             {/* Background Gradient */}
             <div
                 className="absolute inset-0 -z-10"
+                aria-hidden="true"
                 style={{
                     background:
                         "radial-gradient(ellipse 50% 50% at 50% 100%, rgba(0, 212, 255, 0.06), transparent)",
@@ -186,6 +187,7 @@ export default function Contact() {
                                 disabled={isSubmitting}
                                 whileHover={{ scale: 1.02, y: -1 }}
                                 whileTap={{ scale: 0.98 }}
+                                aria-label="Send message"
                                 className="group flex items-center gap-2 px-8 py-3.5 rounded-xl font-medium text-sm bg-gradient-to-r from-cyber-blue/10 to-neon-violet/10 border border-cyber-blue/40 text-cyber-blue hover:border-cyber-blue/80 hover:shadow-[0_0_30px_rgba(0,212,255,0.2)] disabled:opacity-50 transition-all duration-300 shimmer"
                             >
                                 {isSubmitting ? "Sending..." : "Send Message"}

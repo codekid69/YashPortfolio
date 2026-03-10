@@ -122,6 +122,15 @@ export default function Skills() {
                                 >
                                     <div
                                         onClick={() => setExpanded(isExpanded ? null : i)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter" || e.key === " ") {
+                                                e.preventDefault();
+                                                setExpanded(isExpanded ? null : i);
+                                            }
+                                        }}
+                                        role="button"
+                                        tabIndex={0}
+                                        aria-expanded={isExpanded}
                                         className="relative z-10"
                                     >
                                         {/* Header */}

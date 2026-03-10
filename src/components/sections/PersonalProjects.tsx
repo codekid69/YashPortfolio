@@ -186,6 +186,8 @@ export default function PersonalProjects() {
                                     onClick={() =>
                                         setExpanded(isExpanded ? null : i)
                                     }
+                                    aria-expanded={isExpanded}
+                                    aria-controls={`project-panel-${i}`}
                                     className="w-full flex items-center justify-between p-6 text-left group"
                                 >
                                     <div className="flex items-center gap-4">
@@ -237,6 +239,7 @@ export default function PersonalProjects() {
                                                 opacity: { duration: 0.3, ease: "easeOut" },
                                             }}
                                             className="overflow-hidden"
+                                            id={`project-panel-${i}`}
                                         >
                                             <div className="px-6 pb-6 space-y-6">
                                                 <div className="border-t border-dark-border/30 pt-6" />
@@ -341,8 +344,10 @@ export default function PersonalProjects() {
                                                             >
                                                                 <Image
                                                                     src={project.image}
-                                                                    alt={project.name}
+                                                                    alt={`${project.name} — ${project.solution}. Built by Yash Bisht`}
                                                                     fill
+                                                                    loading="lazy"
+                                                                    sizes="(max-width: 1024px) 100vw, 50vw"
                                                                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                                                                 />
                                                                 <div className="absolute inset-0 bg-gradient-to-t from-dark-base/60 via-transparent to-transparent pointer-events-none" />

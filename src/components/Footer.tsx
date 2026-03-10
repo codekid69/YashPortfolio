@@ -24,7 +24,7 @@ export default function Footer() {
                     </a>
 
                     {/* Social Links */}
-                    <div className="flex items-center gap-4">
+                    <nav aria-label="Footer navigation" className="flex items-center gap-4">
                         <a
                             href="https://github.com/codekid69"
                             target="_blank"
@@ -50,7 +50,7 @@ export default function Footer() {
                         >
                             <Mail size={18} />
                         </a>
-                    </div>
+                    </nav>
 
                     {/* Copyright */}
                     <p className="text-sm text-text-muted">
@@ -58,6 +58,6 @@ export default function Footer() {
                     </p>
                 </div>
             </div>
-        </footer>
+        </footer >
     );
 }

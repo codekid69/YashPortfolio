@@ -288,8 +288,10 @@ export default function Hero() {
                     <motion.div
                         variants={itemVariants}
                         className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-cyber-blue/20 mb-8"
+                        role="status"
+                        aria-label="Currently available for work"
                     >
-                        <span className="w-2 h-2 rounded-full bg-cyber-green animate-pulse" />
+                        <span className="w-2 h-2 rounded-full bg-cyber-green animate-pulse" aria-hidden="true" />
                         <span className="text-xs font-mono text-text-secondary">
                             Available for work
                         </span>
@@ -344,18 +346,21 @@ export default function Hero() {
                     >
                         <a
                             href="#work"
+                            aria-label="View my work and client projects"
                             className="group flex items-center gap-2 px-8 py-3.5 rounded-lg font-medium text-sm bg-gradient-to-r from-cyber-blue/10 to-neon-violet/10 border border-cyber-blue/40 text-cyber-blue cta-premium overflow-hidden relative"
                         >
                             {/* Inner shine effect */}
-                            <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12" />
+                            <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12" aria-hidden="true" />
                             <span className="relative z-10">View Work</span>
                             <ExternalLink
                                 size={16}
                                 className="relative z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                                aria-hidden="true"
                             />
                         </a>
                         <a
                             href="#contact"
+                            aria-label="Contact Yash Bisht"
                             className="flex items-center gap-2 px-8 py-3.5 rounded-lg font-medium text-sm glass text-text-secondary hover:text-text-primary hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all duration-300"
                         >
                             Contact Me
@@ -394,6 +399,8 @@ export default function Hero() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5 }}
                 className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+                role="presentation"
+                aria-hidden="true"
             >
                 <motion.div
                     animate={{ y: [0, 8, 0] }}
