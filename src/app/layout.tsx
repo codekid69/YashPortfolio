@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: "Yash Bisht | Full Stack & GenAI Engineer",
     description:
       "Building premium, production-grade SaaS & GenAI systems. Explore my portfolio of client work and RAG architectures.",
-    creator: "@yaborisht",
+    creator: "@iyash069",
     images: ["/og-image.png"],
   },
   robots: {
