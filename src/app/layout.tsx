@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     siteName: "Yash Bisht Portfolio",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Yash Bisht - Full Stack & GenAI Engineer Portfolio",
@@ -68,7 +68,8 @@ export const metadata: Metadata = {
     title: "Yash Bisht | Full Stack & GenAI Engineer",
     description:
       "Building premium, production-grade SaaS & GenAI systems. Explore my portfolio of client work and RAG architectures.",
-    images: ["/og-image.jpg"],
+    creator: "@yaborisht",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -95,7 +96,7 @@ const jsonLd = {
       name: "Yash Bisht",
       jobTitle: "Full Stack & GenAI Software Engineer",
       url: "https://yashbisht.vercel.app",
-      image: "https://yashbisht.vercel.app/og-image.jpg",
+      image: "https://yashbisht.vercel.app/og-image.png",
       sameAs: [
         "https://github.com/codekid69",
         "https://linkedin.com/in/yash-bisht-codekid69",
