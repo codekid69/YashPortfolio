@@ -34,8 +34,8 @@ function Model() {
             <group ref={group}>
                 <primitive
                     object={scene}
-                    scale={3.5}
-                    position={[0, -4.0, 0]}
+                    scale={2.6}
+                    position={[0, -2.6, 0]}
                     rotation={[0, 0, 0]}
                 />
             </group>
