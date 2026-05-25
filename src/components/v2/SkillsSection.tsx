@@ -27,7 +27,7 @@ const GROUPS: { name: string; techs: Tech[] }[] = [
         techs: [
             { name: "Node.js", icon: `${CDN}/nodejs/nodejs-original.svg` },
             { name: "Express", icon: `${CDN}/express/express-original.svg` },
-            { name: "NestJS", icon: `https://cdn.simpleicons.org/nestjs/E0234E` },
+            { name: "NestJS", icon: `${CDN}/nestjs/nestjs-original.svg` },
             { name: "FastAPI", icon: `${CDN}/fastapi/fastapi-original.svg` },
             { name: "Python", icon: `${CDN}/python/python-original.svg` },
         ],
