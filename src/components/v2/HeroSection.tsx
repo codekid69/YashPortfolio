@@ -77,7 +77,7 @@ export default function HeroSection() {
                 <FadeIn
                     y={30}
                     delay={0.6}
-                    className="w-[320px] h-[360px] sm:w-[420px] sm:h-[480px] md:w-[520px] md:h-[580px] lg:w-[620px] lg:h-[680px] max-w-full pointer-events-auto"
+                    className="w-[480px] h-[560px] sm:w-[420px] sm:h-[480px] md:w-[520px] md:h-[580px] lg:w-[620px] lg:h-[680px] max-w-full pointer-events-auto"
                 >
                     <Avatar3D />
                 </FadeIn>
