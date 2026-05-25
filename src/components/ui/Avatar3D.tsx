@@ -34,8 +34,8 @@ function Model() {
             <group ref={group}>
                 <primitive
                     object={scene}
-                    scale={2.0} // Scaled to comfortably fit the container height
-                    position={[0, -2.0, 0]} // Positioned to explicitly show the shoes and rest on the bottom area
+                    scale={3.5}
+                    position={[0, -4.0, 0]}
                     rotation={[0, 0, 0]}
                 />
             </group>
@@ -47,7 +47,7 @@ export default function Avatar3D() {
     return (
         <div className="w-full h-full relative z-10 cursor-grab active:cursor-grabbing">
             <Canvas
-                camera={{ position: [0, 0, 5], fov: 45 }}
+                camera={{ position: [0, 0, 14], fov: 26 }}
                 gl={{ antialias: true, alpha: true }}
                 dpr={[1, 2]}
             >

@@ -25,6 +25,7 @@ const config: Config = {
         sans: ["Inter", "system-ui", "sans-serif"],
         heading: ["Space Grotesk", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
+        kanit: ["var(--font-kanit)", "Kanit", "sans-serif"],
       },
       animation: {
         float: "float 6s ease-in-out infinite",

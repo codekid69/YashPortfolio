@@ -1,31 +1,25 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/sections/Hero";
 import dynamic from "next/dynamic";
+import HeroSection from "@/components/v2/HeroSection";
 
-const Footer = dynamic(() => import("@/components/Footer"));
-const Skills = dynamic(() => import("@/components/sections/Skills"));
-const ClientProjects = dynamic(() => import("@/components/sections/ClientProjects"));
-const PersonalProjects = dynamic(() => import("@/components/sections/PersonalProjects"));
-const Experience = dynamic(() => import("@/components/sections/Experience"));
-const About = dynamic(() => import("@/components/sections/About"));
-const Contact = dynamic(() => import("@/components/sections/Contact"));
+const MarqueeSection = dynamic(() => import("@/components/v2/MarqueeSection"));
+const AboutSection = dynamic(() => import("@/components/v2/AboutSection"));
+const ServicesSection = dynamic(() => import("@/components/v2/ServicesSection"));
+const ProjectsSection = dynamic(() => import("@/components/v2/ProjectsSection"));
+const ExperienceSection = dynamic(() => import("@/components/v2/ExperienceSection"));
+const SkillsSection = dynamic(() => import("@/components/v2/SkillsSection"));
+const ContactSection = dynamic(() => import("@/components/v2/ContactSection"));
 
 export default function Home() {
   return (
-    <>
-      <header>
-        <Navbar />
-      </header>
-      <main>
-        <Hero />
-        <ClientProjects />
-        <Skills />
-        <PersonalProjects />
-        <Experience />
-        <About />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <main style={{ overflowX: "clip", backgroundColor: "#0C0C0C" }}>
+      <HeroSection />
+      <MarqueeSection />
+      <AboutSection />
+      <ServicesSection />
+      <ProjectsSection />
+      <ExperienceSection />
+      <SkillsSection />
+      <ContactSection />
+    </main>
   );
 }
