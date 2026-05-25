@@ -73,7 +73,7 @@ export default function HeroSection() {
             </div>
 
             {/* 3D Avatar */}
-            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 z-10 flex justify-center pointer-events-none px-6">
+            <div className="absolute inset-x-0 bottom-[90px] sm:bottom-0 z-10 flex justify-center pointer-events-none px-6">
                 <FadeIn
                     y={30}
                     delay={0.6}
