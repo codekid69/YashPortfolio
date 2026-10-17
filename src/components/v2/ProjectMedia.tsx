@@ -20,7 +20,7 @@ interface Props {
 export default function ProjectMedia({ image, video, active = true, alt, sizes, className = "" }: Props) {
     const wrapRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const inView = useInView(wrapRef, { amount: 0.4 });
+    const inView = useInView(wrapRef, { amount: 0.25 });
     const reduceMotion = useReducedMotion();
     const [ready, setReady] = useState(false);
 

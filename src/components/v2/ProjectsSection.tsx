@@ -178,6 +178,7 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Open ${project.name} live site`}
+                    data-media
                     className="group md:col-span-7 order-1 md:order-2 block rounded-[20px] sm:rounded-[28px] md:rounded-[32px] overflow-hidden border border-[#D7E2EA]/15 bg-[#151515] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D7E2EA]"
                 >
                     <div className="flex items-center gap-3 px-4 py-2.5 border-b border-[#D7E2EA]/10">
@@ -235,18 +236,32 @@ export default function ProjectsSection() {
     const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 30, restDelta: 0.001 });
     const isDesktop = useIsDesktop();
 
-    // The active card is the last one whose top has passed ~45% of the viewport:
-    // on desktop that's the card on top of the stack, on phones the one in focus.
-    // Only it plays its video.
+    // Only one video plays at a time. Desktop: the card on top of the stack
+    // (last one whose top has passed ~45% of the viewport). Phones: the video
+    // frame closest to the middle of the screen, since frames sit at the top of
+    // each card and can scroll away before the next card arrives.
     const [activeIndex, setActiveIndex] = useState(0);
     const { scrollY } = useScroll();
     useMotionValueEvent(scrollY, "change", () => {
-        const cards = containerRef.current?.querySelectorAll("article");
-        if (!cards) return;
+        const root = containerRef.current;
+        if (!root) return;
+        const vh = window.innerHeight;
         let next = 0;
-        cards.forEach((card, i) => {
-            if (card.getBoundingClientRect().top < window.innerHeight * 0.45) next = i;
-        });
+        if (isDesktop) {
+            root.querySelectorAll("article").forEach((card, i) => {
+                if (card.getBoundingClientRect().top < vh * 0.45) next = i;
+            });
+        } else {
+            let best = Infinity;
+            root.querySelectorAll("[data-media]").forEach((frame, i) => {
+                const r = frame.getBoundingClientRect();
+                const dist = Math.abs(r.top + r.height / 2 - vh / 2);
+                if (dist < best) {
+                    best = dist;
+                    next = i;
+                }
+            });
+        }
         setActiveIndex(next);
     });
 
