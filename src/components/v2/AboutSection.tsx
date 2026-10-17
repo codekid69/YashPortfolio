@@ -23,11 +23,11 @@ export default function AboutSection() {
                 className="absolute top-[4%] left-[1%] sm:left-[2%] md:left-[4%] w-[70px] sm:w-[130px] md:w-[210px] pointer-events-none"
             >
                 <Image
-                    src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png"
+                    src="/decor/moon_icon.png"
                     alt=""
                     width={210}
                     height={210}
-                    unoptimized
+                    sizes="(max-width: 640px) 80px, (max-width: 768px) 140px, 220px"
                     className="w-full h-auto"
                 />
             </FadeIn>
@@ -39,11 +39,11 @@ export default function AboutSection() {
                 className="absolute bottom-[8%] left-[3%] sm:left-[6%] md:left-[10%] w-[60px] sm:w-[110px] md:w-[180px] pointer-events-none"
             >
                 <Image
-                    src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png"
+                    src="/decor/p59_1.png"
                     alt=""
                     width={180}
                     height={180}
-                    unoptimized
+                    sizes="(max-width: 640px) 80px, (max-width: 768px) 140px, 220px"
                     className="w-full h-auto"
                 />
             </FadeIn>
@@ -55,11 +55,11 @@ export default function AboutSection() {
                 className="absolute top-[4%] right-[1%] sm:right-[2%] md:right-[4%] w-[70px] sm:w-[130px] md:w-[210px] pointer-events-none"
             >
                 <Image
-                    src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png"
+                    src="/decor/lego_icon-1.png"
                     alt=""
                     width={210}
                     height={210}
-                    unoptimized
+                    sizes="(max-width: 640px) 80px, (max-width: 768px) 140px, 220px"
                     className="w-full h-auto"
                 />
             </FadeIn>
@@ -71,11 +71,11 @@ export default function AboutSection() {
                 className="absolute bottom-[8%] right-[3%] sm:right-[6%] md:right-[10%] w-[75px] sm:w-[140px] md:w-[220px] pointer-events-none"
             >
                 <Image
-                    src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png"
+                    src="/decor/Group_134-1.png"
                     alt=""
                     width={220}
                     height={220}
-                    unoptimized
+                    sizes="(max-width: 640px) 80px, (max-width: 768px) 140px, 220px"
                     className="w-full h-auto"
                 />
             </FadeIn>
