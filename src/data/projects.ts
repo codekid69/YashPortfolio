@@ -9,6 +9,7 @@ export type Project = {
     link: string;
     // Still frame from the same recording; shown until the video is playing.
     poster: string;
+    // Base path without extension; .mp4 and .webm are both served.
     video: string;
     // Case-study page (/projects/[slug]).
     role: string;
@@ -28,7 +29,7 @@ export const PROJECTS: Project[] = [
         tags: ["Laravel", "PostgreSQL", "React", "WhatsApp API", "Razorpay"],
         link: "https://clinicos.beyondchats.com/",
         poster: "/projects/clinicos.jpg",
-        video: "/projects/clinicos.webm",
+        video: "/projects/clinicos",
         role: "Solo engineer, end to end: backend, frontend, integrations, CI/CD and production",
         overview:
             "Clinic OS is BeyondChats' clinic management platform. Clinics run bookings, patient records, check-in, payments and follow-ups from one place, while patient communication runs itself on WhatsApp and email. I built it end to end as the sole engineer, from the data model to production operations, and it is used live by clinics.",
@@ -54,7 +55,7 @@ export const PROJECTS: Project[] = [
         tags: ["Next.js", "TypeScript", "Supabase", "Node.js"],
         link: "https://www.getpopcom.com/",
         poster: "/projects/popcom.jpg",
-        video: "/projects/popcom.webm",
+        video: "/projects/popcom",
         role: "Full stack engineer, end-to-end product build",
         overview:
             "Influencer content drives traffic, but brands rarely know which creators actually drive sales. PopCom closes that gap: brands and creators collaborate on one platform where every sale is attributed to the creator who drove it, and payouts follow performance.",
@@ -77,7 +78,7 @@ export const PROJECTS: Project[] = [
         tags: ["React", "Vite", "Node.js", "MongoDB"],
         link: "https://www.dukiyainfra.com/",
         poster: "/projects/dukiya.jpg",
-        video: "/projects/dukiya.webm",
+        video: "/projects/dukiya",
         role: "Full stack developer",
         overview:
             "A luxury property platform for Dukiya Infra, built to feel as premium as the homes it sells while staying fast and search-friendly. Buyers browse properties, download brochures and reach the sales team in a couple of taps.",
@@ -99,7 +100,7 @@ export const PROJECTS: Project[] = [
         tags: ["Corporate Site", "Project Portfolio", "Lead Capture", "SEO"],
         link: "https://www.hariominterior.in/",
         poster: "/projects/hariom.jpg",
-        video: "/projects/hariom.webm",
+        video: "/projects/hariom",
         role: "Web developer",
         overview:
             "Hari Om Interior delivers turnkey hospitality, commercial and residential fit-outs, with in-house manufacturing and brands like Taj, Marriott and Hyatt among its partners. The site presents that scale clearly and turns visitors into consultation requests.",
@@ -120,7 +121,7 @@ export const PROJECTS: Project[] = [
         tags: ["LLM Memory", "RAG", "Google Auth", "Opportunity Scanning"],
         link: "https://thread-ai-phi.vercel.app/",
         poster: "/projects/threadai.jpg",
-        video: "/projects/threadai.webm",
+        video: "/projects/threadai",
         role: "Solo builder: product, design and engineering",
         overview:
             "Every chatbot forgets you the moment you close the tab. Thread is a personal intelligence system that remembers: it learns from your conversations and turns scattered thoughts, relationships and opportunities into structured understanding.",
