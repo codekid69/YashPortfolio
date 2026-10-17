@@ -33,12 +33,11 @@ const SITE_URL = "https://yashbisht.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      "Yash Bisht — Full Stack & GenAI Software Engineer | SaaS, RAG, AI Products",
+    default: "Yash Bisht — Full Stack & GenAI Engineer | SaaS & AI Products",
     template: "%s | Yash Bisht",
   },
   description:
-    "Yash Bisht is a Full Stack Developer and GenAI Engineer building production-grade SaaS platforms, RAG systems, and AI-powered products with React, Next.js, Node.js, TypeScript, OpenAI, and Gemini. Currently at BeyondChats. Available for freelance and full-time work.",
+    "Full stack & GenAI engineer with 3+ years shipping production SaaS and AI products. Built Clinic OS at BeyondChats. React, Next.js, Node.js, Laravel, RAG.",
   keywords: [
     "Yash Bisht",
     "Yash Bisht Portfolio",
