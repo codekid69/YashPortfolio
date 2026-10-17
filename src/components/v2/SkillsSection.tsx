@@ -1,6 +1,7 @@
 "use client";
 
 import FadeIn from "./FadeIn";
+import RevealHeading from "./RevealHeading";
 
 const CDN = "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons";
 const SI = "https://cdn.simpleicons.org";
@@ -84,7 +85,7 @@ const GROUPS: { name: string; techs: Tech[] }[] = [
 function LogoTile({ tech }: { tech: Tech }) {
     return (
         <div className="group flex flex-col items-center gap-2 w-[80px] sm:w-[90px]">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border border-[#D7E2EA]/15 bg-[#111111] flex items-center justify-center transition-all duration-300 group-hover:border-[#D7E2EA]/40 group-hover:scale-105">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border border-[#D7E2EA]/15 bg-[linear-gradient(180deg,#171717,#0F0F0F)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] flex items-center justify-center transition-[transform,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-[#D7E2EA]/40 group-hover:-translate-y-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src={tech.icon}
@@ -94,7 +95,7 @@ function LogoTile({ tech }: { tech: Tech }) {
                     style={tech.invert ? { filter: "invert(1) brightness(1.5)" } : undefined}
                 />
             </div>
-            <span className="text-[10px] sm:text-xs text-[#D7E2EA]/70 font-light uppercase tracking-wider text-center">
+            <span className="text-[10px] sm:text-xs text-[#D7E2EA]/75 font-normal uppercase tracking-[0.08em] text-center transition-colors duration-300 group-hover:text-[#EEF3F6]">
                 {tech.name}
             </span>
         </div>
@@ -107,20 +108,17 @@ export default function SkillsSection() {
             id="skills"
             className="relative bg-[#0C0C0C] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-28"
         >
-            <FadeIn y={40} delay={0}>
-                <h2
-                    className="hero-heading font-black uppercase text-center leading-none tracking-tight"
-                    style={{ fontSize: "clamp(2.5rem, 10vw, 140px)" }}
-                >
-                    Stack
-                </h2>
-            </FadeIn>
+            <RevealHeading
+                text="Stack"
+                className="font-black uppercase text-center type-display"
+                style={{ fontSize: "clamp(2.5rem, 10vw, 140px)" }}
+            />
 
             <div className="max-w-5xl mx-auto mt-12 sm:mt-16 md:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                 {GROUPS.map((g, i) => (
                     <FadeIn key={g.name} y={30} delay={i * 0.08}>
-                        <div className="rounded-3xl border border-[#D7E2EA]/15 p-6 sm:p-8 h-full">
-                            <h3 className="text-[#D7E2EA] text-lg sm:text-xl font-medium uppercase tracking-wider mb-6">
+                        <div className="rounded-3xl border border-[#D7E2EA]/15 bg-[linear-gradient(180deg,rgba(215,226,234,0.035),transparent_60%)] p-6 sm:p-8 h-full transition-colors duration-500 hover:border-[#D7E2EA]/30">
+                            <h3 className="type-title text-[#EEF3F6] text-lg sm:text-xl font-semibold uppercase tracking-[0.06em] mb-6">
                                 {g.name}
                             </h3>
                             <div className="flex flex-wrap gap-4 sm:gap-5">

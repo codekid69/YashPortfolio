@@ -1,6 +1,7 @@
 "use client";
 
 import FadeIn from "./FadeIn";
+import RevealHeading from "./RevealHeading";
 
 type Experience = {
     role: string;
@@ -75,14 +76,11 @@ export default function ExperienceSection() {
             id="experience"
             className="relative bg-[#0C0C0C] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-28"
         >
-            <FadeIn y={40} delay={0}>
-                <h2
-                    className="hero-heading font-black uppercase text-center leading-none tracking-tight"
-                    style={{ fontSize: "clamp(2.5rem, 10vw, 140px)" }}
-                >
-                    Experience
-                </h2>
-            </FadeIn>
+            <RevealHeading
+                text="Experience"
+                className="font-black uppercase text-center type-display"
+                style={{ fontSize: "clamp(2.5rem, 10vw, 140px)" }}
+            />
 
             <div className="max-w-5xl mx-auto mt-12 sm:mt-16 md:mt-20">
                 {EXPERIENCES.map((e, i) => (
@@ -98,18 +96,20 @@ export default function ExperienceSection() {
                             }}
                         >
                             <div className="sm:w-1/3 flex flex-col gap-1">
-                                <span className="text-[#D7E2EA]/60 text-xs uppercase tracking-widest font-light">
+                                <span className="type-eyebrow tabular text-xs font-normal">
                                     {e.period} · {e.type}
                                 </span>
-                                <h3 className="text-[#D7E2EA] text-xl sm:text-2xl font-medium uppercase">
+                                <h3 className="type-title text-[#EEF3F6] text-xl sm:text-2xl font-semibold uppercase mt-1">
                                     {e.company}
                                 </h3>
-                                <span className="text-[#D7E2EA]/70 text-sm font-light">
+                                <span className="text-[#D7E2EA]/75 text-sm font-light tracking-[0.01em]">
                                     {e.role}
                                 </span>
                                 {e.highlight && (
-                                    <span className="mt-2 self-start rounded-full border border-[#D7E2EA]/40 px-3 py-1 text-[11px] uppercase tracking-wider text-[#D7E2EA]">
-                                        {e.highlight}
+                                    <span className="mt-3 self-start rounded-full p-px bg-[linear-gradient(95deg,#B600A8,#7621B0,#BE4C00)]">
+                                        <span className="block rounded-full bg-[#0C0C0C] px-3 py-1 text-[11px] uppercase tracking-[0.1em]">
+                                            <span className="accent-text">{e.highlight}</span>
+                                        </span>
                                     </span>
                                 )}
                             </div>
@@ -117,18 +117,18 @@ export default function ExperienceSection() {
                                 {e.impacts.map((imp, j) => (
                                     <li
                                         key={j}
-                                        className="text-[#D7E2EA]/70 font-light leading-relaxed"
-                                        style={{ fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)" }}
+                                        className="type-body text-[#D7E2EA]/75 font-light pl-6 relative before:content-['—'] before:absolute before:left-0 before:text-[#D7E2EA]/40"
+                                        style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.1rem)" }}
                                     >
-                                        — {imp}
+                                        {imp}
                                     </li>
                                 ))}
                                 {e.stack && (
-                                    <li className="flex flex-wrap gap-2 pt-2" aria-label="Stack">
+                                    <li className="flex flex-wrap gap-2 pt-2 pl-6" aria-label="Stack">
                                         {e.stack.map((t) => (
                                             <span
                                                 key={t}
-                                                className="rounded-full border border-[#D7E2EA]/20 px-2.5 py-0.5 text-[11px] uppercase tracking-wider text-[#D7E2EA]/60 font-light"
+                                                className="rounded-full border border-[#D7E2EA]/20 bg-[#D7E2EA]/[0.03] px-2.5 py-0.5 text-[11px] uppercase tracking-[0.1em] text-[#D7E2EA]/70 font-normal"
                                             >
                                                 {t}
                                             </span>

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValueEvent, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
-import FadeIn from "./FadeIn";
+import RevealHeading from "./RevealHeading";
 import LiveProjectButton from "./LiveProjectButton";
 import ProjectMedia from "./ProjectMedia";
 import { PROJECTS, hostOf, type Project } from "@/data/projects";
@@ -51,36 +51,36 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                 initial={{ opacity: 0, y: 70, rotateX: 10 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.9, ease: EASE_OUT }}
+                transition={{ type: "spring", bounce: 0, duration: 1.1 }}
                 style={isDesktop ? { scale, transformOrigin: "50% 0%" } : undefined}
-                className="relative w-full max-w-6xl rounded-[28px] sm:rounded-[40px] md:rounded-[48px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 items-center will-change-transform md:shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.9)]"
+                className="relative w-full max-w-6xl rounded-[28px] sm:rounded-[40px] md:rounded-[48px] border-2 border-[#D7E2EA] bg-[linear-gradient(180deg,#141414_0%,#0C0C0C_55%)] p-4 sm:p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 items-center will-change-transform md:shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.9)]"
             >
                 {/* Copy */}
                 <div className="md:col-span-5 flex flex-col gap-4 md:gap-5 order-2 md:order-1 md:py-2">
                     <div className="flex items-start gap-4">
                         <span
                             aria-hidden="true"
-                            className="font-black text-[#D7E2EA] leading-[0.8] shrink-0"
+                            className="hero-heading tabular font-black leading-[0.8] tracking-[-0.04em] shrink-0"
                             style={{ fontSize: "clamp(2.5rem, 6vw, 88px)" }}
                         >
                             {num}
                         </span>
                         <div className="flex flex-col min-w-0 pt-0.5">
-                            <span className="text-[#D7E2EA]/55 text-[10px] sm:text-xs uppercase tracking-[0.2em] font-light">
+                            <span className="type-eyebrow text-[10px] sm:text-xs font-normal">
                                 {project.category}
                             </span>
-                            <h3 className="text-[#D7E2EA] text-xl sm:text-2xl md:text-3xl font-medium uppercase leading-tight">
+                            <h3 className="type-title text-[#EEF3F6] text-xl sm:text-2xl md:text-3xl font-semibold uppercase mt-1">
                                 {project.name}
                             </h3>
-                            <span className="text-[#D7E2EA]/50 text-xs sm:text-sm font-light italic">
+                            <span className="accent-text self-start text-xs sm:text-sm font-normal tracking-[0.01em] mt-0.5">
                                 {project.tagline}
                             </span>
                         </div>
                     </div>
 
                     <p
-                        className="text-[#D7E2EA]/75 font-light leading-relaxed"
-                        style={{ fontSize: "clamp(0.92rem, 1.15vw, 1.08rem)" }}
+                        className="type-body text-[#D7E2EA]/80 font-light"
+                        style={{ fontSize: "clamp(0.95rem, 1.15vw, 1.08rem)" }}
                     >
                         {project.description}
                     </p>
@@ -89,20 +89,26 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                         {project.tags.map((t) => (
                             <li
                                 key={t}
-                                className="rounded-full border border-[#D7E2EA]/25 px-3 py-1 text-[11px] sm:text-xs uppercase tracking-wider text-[#D7E2EA]/70 font-light"
+                                className="rounded-full border border-[#D7E2EA]/20 bg-[#D7E2EA]/[0.03] px-3 py-1 text-[11px] sm:text-xs uppercase tracking-[0.1em] text-[#D7E2EA]/75 font-normal transition-colors duration-300 hover:border-[#D7E2EA]/50 hover:text-[#EEF3F6]"
                             >
                                 {t}
                             </li>
                         ))}
                     </ul>
 
-                    <div className="pt-1 flex flex-wrap items-center gap-x-6 gap-y-3">
+                    <div className="pt-1 flex flex-wrap items-center gap-x-5 sm:gap-x-6 gap-y-3">
                         <LiveProjectButton href={project.link} />
                         <a
                             href={`/projects/${project.slug}`}
-                            className="text-sm uppercase tracking-widest text-[#D7E2EA]/70 underline decoration-[#D7E2EA]/30 underline-offset-[6px] hover:text-[#D7E2EA] hover:decoration-[#D7E2EA] transition-colors"
+                            className="group/cs inline-flex items-center gap-2 py-3 -my-3 text-sm uppercase tracking-[0.1em] sm:tracking-[0.14em] text-[#D7E2EA]/75 underline decoration-[#D7E2EA]/30 underline-offset-[6px] hover:text-[#EEF3F6] hover:decoration-[#EEF3F6] transition-colors duration-300"
                         >
-                            Case study<span className="sr-only">: {project.name}</span> →
+                            Case study<span className="sr-only">: {project.name}</span>
+                            <span
+                                aria-hidden="true"
+                                className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cs:translate-x-1"
+                            >
+                                →
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -117,12 +123,17 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                     className="group md:col-span-7 order-1 md:order-2 block rounded-[20px] sm:rounded-[28px] md:rounded-[32px] overflow-hidden border border-[#D7E2EA]/15 bg-[#151515] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D7E2EA]"
                 >
                     <div className="flex items-center gap-3 px-4 py-2.5 border-b border-[#D7E2EA]/10">
+                        {/* Window controls light up on the card whose video is playing. */}
                         <span className="flex gap-1.5" aria-hidden="true">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#D7E2EA]/20" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#D7E2EA]/20" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#D7E2EA]/20" />
+                            {["#FF5F57", "#FEBC2E", "#28C840"].map((c) => (
+                                <span
+                                    key={c}
+                                    className="w-2.5 h-2.5 rounded-full transition-colors duration-700"
+                                    style={{ backgroundColor: isActive ? c : "rgba(215, 226, 234, 0.2)" }}
+                                />
+                            ))}
                         </span>
-                        <span className="flex-1 truncate text-center text-[11px] sm:text-xs text-[#D7E2EA]/45 font-light tracking-wide">
+                        <span className="flex-1 truncate text-center text-[11px] sm:text-xs text-[#D7E2EA]/60 font-light tracking-[0.04em]">
                             {hostOf(project.link)}
                         </span>
                         <span className="w-[42px]" aria-hidden="true" />
@@ -205,14 +216,11 @@ export default function ProjectsSection() {
             id="projects"
             className="relative bg-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 z-10 pt-20 sm:pt-24 md:pt-32 pb-10"
         >
-            <FadeIn y={40} delay={0}>
-                <h2
-                    className="hero-heading font-black uppercase text-center leading-none tracking-tight px-5"
-                    style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
-                >
-                    Projects
-                </h2>
-            </FadeIn>
+            <RevealHeading
+                text="Projects"
+                className="font-black uppercase text-center type-display px-5"
+                style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
+            />
 
             <div ref={containerRef} className="relative mt-10 sm:mt-16">
                 {PROJECTS.map((p, i) => (

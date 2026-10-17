@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ElementType, ReactNode, useMemo } from "react";
 
 interface FadeInProps {
@@ -13,8 +13,6 @@ interface FadeInProps {
     className?: string;
     style?: React.CSSProperties;
 }
-
-const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 // Cache of motion components by element tag, so we don't re-create
 // (and therefore re-mount the subtree) on every parent render.
@@ -40,12 +38,15 @@ export default function FadeIn({
 }: FadeInProps) {
     const MotionTag = useMemo(() => getMotion(as), [as]);
     const Component = MotionTag as React.ElementType;
+    // Reduced motion keeps the fade (it aids reading order) but drops travel.
+    const reduceMotion = useReducedMotion();
     return (
         <Component
-            initial={{ opacity: 0, x, y }}
+            initial={reduceMotion ? { opacity: 0 } : { opacity: 0, x, y }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, margin: "50px", amount: 0 }}
-            transition={{ delay, duration, ease: EASE }}
+            // Critically damped spring: arrives softly, never overshoots.
+            transition={{ type: "spring", bounce: 0, duration: duration + 0.2, delay }}
             className={className}
             style={style}
         >

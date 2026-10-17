@@ -78,7 +78,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 pt-6 md:pt-8 pb-20">
                 {/* Breadcrumb */}
-                <nav aria-label="Breadcrumb" className="hero-in text-xs sm:text-sm uppercase tracking-widest font-light text-[#D7E2EA]/55">
+                <nav aria-label="Breadcrumb" className="hero-in text-xs sm:text-sm uppercase tracking-[0.14em] font-light text-[#D7E2EA]/60">
                     <ol className="flex flex-wrap items-center gap-2">
                         <li>
                             <Link href="/" className="hover:text-[#D7E2EA] transition-colors">
@@ -100,19 +100,17 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
                 {/* Header */}
                 <header className="mt-12 sm:mt-16 flex flex-col gap-5 hero-in" style={{ ["--hero-delay" as string]: "0.1s" }}>
-                    <span className="text-[11px] sm:text-sm uppercase tracking-[0.2em] font-light text-[#D7E2EA]/55">
-                        {project.category}
-                    </span>
+                    <span className="type-eyebrow text-[11px] sm:text-sm font-normal">{project.category}</span>
                     <h1
-                        className="hero-heading font-black uppercase leading-[0.9] tracking-tight"
-                        style={{ fontSize: "clamp(3rem, 11vw, 150px)" }}
+                        className="sweep sweep-play hero-heading font-black uppercase type-display"
+                        style={{ fontSize: "clamp(3rem, 11vw, 150px)", ["--hero-delay" as string]: "0.15s" }}
                     >
                         {project.name}
                     </h1>
-                    <p className="text-lg sm:text-2xl font-light italic text-[#D7E2EA]/70">{project.tagline}</p>
+                    <p className="accent-text self-start text-lg sm:text-2xl font-light tracking-[0.01em]">{project.tagline}</p>
                     <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
                         <LiveProjectButton href={project.link} label="Visit live site" />
-                        <span className="text-sm text-[#D7E2EA]/50 font-light">{hostOf(project.link)}</span>
+                        <span className="text-sm text-[#D7E2EA]/60 font-light tracking-[0.02em]">{hostOf(project.link)}</span>
                     </div>
                 </header>
 
@@ -127,7 +125,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                             <span className="w-2.5 h-2.5 rounded-full bg-[#D7E2EA]/20" />
                             <span className="w-2.5 h-2.5 rounded-full bg-[#D7E2EA]/20" />
                         </span>
-                        <span className="flex-1 truncate text-center text-xs text-[#D7E2EA]/45 font-light tracking-wide">
+                        <span className="flex-1 truncate text-center text-xs text-[#D7E2EA]/60 font-light tracking-[0.04em]">
                             {hostOf(project.link)}
                         </span>
                         <span className="w-[42px]" aria-hidden="true" />
@@ -146,18 +144,18 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 <div className="mt-16 sm:mt-24 grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
                     <aside className="md:col-span-4 flex flex-col gap-8">
                         <div>
-                            <h2 className="text-xs uppercase tracking-[0.2em] text-[#D7E2EA]/50 mb-3">Role</h2>
-                            <p className="font-light leading-relaxed">{project.role}</p>
+                            <h2 className="type-eyebrow text-xs mb-3">Role</h2>
+                            <p className="type-body font-light text-[#EEF3F6]">{project.role}</p>
                         </div>
                         <div>
-                            <h2 className="text-xs uppercase tracking-[0.2em] text-[#D7E2EA]/50 mb-3">
+                            <h2 className="type-eyebrow text-xs mb-3">
                                 {project.stack ? "Stack" : "Scope"}
                             </h2>
                             <ul className="flex flex-wrap gap-2">
                                 {(project.stack ?? project.tags).map((t) => (
                                     <li
                                         key={t}
-                                        className="rounded-full border border-[#D7E2EA]/25 px-3 py-1 text-[11px] sm:text-xs uppercase tracking-wider text-[#D7E2EA]/75 font-light"
+                                        className="rounded-full border border-[#D7E2EA]/20 bg-[#D7E2EA]/[0.03] px-3 py-1 text-[11px] sm:text-xs uppercase tracking-[0.1em] text-[#D7E2EA]/75 font-normal"
                                     >
                                         {t}
                                     </li>
@@ -168,18 +166,18 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
                     <div className="md:col-span-8 flex flex-col gap-12">
                         <section>
-                            <h2 className="text-2xl sm:text-3xl font-medium uppercase mb-5">Overview</h2>
-                            <p className="font-light leading-relaxed text-[#D7E2EA]/80" style={{ fontSize: "clamp(1rem, 1.4vw, 1.2rem)" }}>
+                            <h2 className="type-title text-[#EEF3F6] text-2xl sm:text-3xl font-semibold uppercase mb-5">Overview</h2>
+                            <p className="type-body font-light text-[#D7E2EA]/80" style={{ fontSize: "clamp(1rem, 1.4vw, 1.2rem)" }}>
                                 {project.overview}
                             </p>
                         </section>
                         <section>
-                            <h2 className="text-2xl sm:text-3xl font-medium uppercase mb-5">What I built</h2>
+                            <h2 className="type-title text-[#EEF3F6] text-2xl sm:text-3xl font-semibold uppercase mb-5">What I built</h2>
                             <ul className="flex flex-col gap-4">
                                 {project.highlights.map((h) => (
                                     <li
                                         key={h}
-                                        className="font-light leading-relaxed text-[#D7E2EA]/80 pl-6 relative before:content-['—'] before:absolute before:left-0 before:text-[#D7E2EA]/40"
+                                        className="type-body font-light text-[#D7E2EA]/80 pl-6 relative before:content-['—'] before:absolute before:left-0 before:text-[#D7E2EA]/40"
                                         style={{ fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)" }}
                                     >
                                         {h}
@@ -193,17 +191,23 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 {/* Next project */}
                 <nav aria-label="More projects" className="mt-24 sm:mt-32 border-t border-[#D7E2EA]/15 pt-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
                     <Link href={`/projects/${next.slug}`} className="group flex flex-col gap-2">
-                        <span className="text-xs uppercase tracking-[0.2em] text-[#D7E2EA]/50">Next project</span>
+                        <span className="type-eyebrow text-xs">Next project</span>
                         <span
-                            className="hero-heading font-black uppercase leading-none tracking-tight transition-opacity group-hover:opacity-80"
+                            className="font-black uppercase type-display inline-flex items-baseline gap-[0.25em]"
                             style={{ fontSize: "clamp(2rem, 6vw, 72px)" }}
                         >
-                            {next.name} →
+                            <span className="hero-heading">{next.name}</span>
+                            <span
+                                aria-hidden="true"
+                                className="hero-heading inline-block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2"
+                            >
+                                →
+                            </span>
                         </span>
                     </Link>
                     <Link
                         href="/#projects"
-                        className="text-sm uppercase tracking-widest text-[#D7E2EA]/70 underline decoration-[#D7E2EA]/30 underline-offset-[6px] hover:text-[#D7E2EA] transition-colors"
+                        className="text-sm uppercase tracking-[0.14em] text-[#D7E2EA]/75 underline decoration-[#D7E2EA]/30 underline-offset-[6px] hover:text-[#D7E2EA] transition-colors"
                     >
                         All projects
                     </Link>

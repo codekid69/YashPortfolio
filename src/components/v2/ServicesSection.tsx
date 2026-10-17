@@ -1,6 +1,7 @@
 "use client";
 
 import FadeIn from "./FadeIn";
+import RevealHeading from "./RevealHeading";
 
 const SERVICES = [
     {
@@ -36,20 +37,18 @@ export default function ServicesSection() {
             id="services"
             className="relative bg-white rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 text-[#0C0C0C]"
         >
-            <FadeIn y={40} delay={0}>
-                <h2
-                    className="font-black uppercase text-center text-[#0C0C0C] mb-16 sm:mb-20 md:mb-28 leading-none tracking-tight"
-                    style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
-                >
-                    Services
-                </h2>
-            </FadeIn>
+            <RevealHeading
+                text="Services"
+                gradient={false}
+                className="font-black uppercase text-center text-[#0C0C0C] mb-16 sm:mb-20 md:mb-28 type-display"
+                style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
+            />
 
             <div className="max-w-5xl mx-auto">
                 {SERVICES.map((s, i) => (
                     <FadeIn key={s.num} y={30} delay={i * 0.1}>
                         <div
-                            className="flex items-start gap-6 sm:gap-10 md:gap-14 py-8 sm:py-10 md:py-12"
+                            className="group flex items-start gap-6 sm:gap-10 md:gap-14 py-8 sm:py-10 md:py-12"
                             style={{
                                 borderTop:
                                     i === 0
@@ -59,24 +58,21 @@ export default function ServicesSection() {
                             }}
                         >
                             <span
-                                className="font-black text-[#0C0C0C] leading-none shrink-0"
+                                className="service-num tabular font-black leading-none tracking-[-0.04em] shrink-0"
                                 style={{ fontSize: "clamp(3rem, 10vw, 140px)" }}
                             >
                                 {s.num}
                             </span>
                             <div className="flex-1 flex flex-col gap-3 sm:gap-4">
                                 <h3
-                                    className="font-medium uppercase leading-tight"
+                                    className="type-title font-semibold uppercase"
                                     style={{ fontSize: "clamp(1rem, 2.2vw, 2.1rem)" }}
                                 >
                                     {s.name}
                                 </h3>
                                 <p
-                                    className="font-light leading-relaxed max-w-2xl"
-                                    style={{
-                                        fontSize: "clamp(0.85rem, 1.6vw, 1.25rem)",
-                                        opacity: 0.6,
-                                    }}
+                                    className="type-body font-light max-w-2xl text-[#0C0C0C]/70"
+                                    style={{ fontSize: "clamp(0.92rem, 1.6vw, 1.25rem)" }}
                                 >
                                     {s.desc}
                                 </p>

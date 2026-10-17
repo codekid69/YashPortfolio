@@ -12,6 +12,18 @@
   --neon-violet: #7C3AED;
   --cyber-green: #00FF88;
   --neon-pink: #FF006E;
+
+  /* Portfolio palette. Text tints are alpha steps of --fg, each at or
+     above WCAG AA (4.5:1) on --bg. */
+  --bg: #0C0C0C;
+  --fg: #D7E2EA;
+  --fg-strong: #EEF3F6;
+  --fg-muted: rgba(215, 226, 234, 0.74);
+  --fg-subtle: rgba(215, 226, 234, 0.6);
+  --hairline: rgba(215, 226, 234, 0.14);
+  /* The CTA gradient, lifted so it stays legible as text on --bg. */
+  --accent-text: linear-gradient(95deg, #F05CE3 0%, #B48CFF 52%, #FF9A5C 100%);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -21,7 +33,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 80px;
   overflow-x: clip;
   background-color: #0C0C0C;
@@ -34,6 +45,15 @@ body {
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  font-synthesis: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 #__next,
@@ -42,7 +62,8 @@ main {
 }
 
 .hero-heading {
-  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+  /* Brushed-metal fill: darker crown, bright base, like light from below. */
+  background: linear-gradient(180deg, #7A818C 0%, #B9C7D2 58%, #E6EEF3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -94,7 +115,7 @@ main {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--cyber-blue);
+  background: #7621B0;
 }
 
 /* ===== GLASS MORPHISM ===== */
@@ -413,13 +434,18 @@ main {
 /* ===== FORM FOCUS GLOW ===== */
 input:focus,
 textarea:focus {
-  box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.2), 0 0 20px rgba(0, 212, 255, 0.06) !important;
+  box-shadow: 0 0 0 3px rgba(182, 0, 168, 0.18), 0 0 24px rgba(118, 33, 176, 0.12) !important;
 }
 
 /* ===== SELECTION ===== */
 ::selection {
-  background: rgba(0, 212, 255, 0.3);
-  color: #F1F5F9;
+  background: rgba(182, 0, 168, 0.45);
+  color: #FFFFFF;
+}
+
+:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
 }
 
 /* ===== NEW HERO ENHANCEMENTS ===== */
@@ -503,12 +529,203 @@ textarea:focus {
 }
 
 .hero-in {
-  animation: hero-in 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+  animation: hero-in 0.9s var(--ease-out) both;
   animation-delay: var(--hero-delay, 0s);
 }
 
+/* Display headings: a soft-edged mask sweeps left to right while the line
+   rises and comes into focus, so letters appear in reading order without
+   splitting the word (which would lose the font's kerning). Starts at 0.01
+   opacity for the same LCP reason as .hero-in. */
+@keyframes sweep-in {
+  from {
+    opacity: 0.01;
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+    transform: translate3d(0, 0.14em, 0);
+    filter: blur(14px);
+  }
+  to {
+    opacity: 1;
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+.sweep {
+  -webkit-mask-image: linear-gradient(90deg, #000 0 40%, transparent 60% 100%);
+  mask-image: linear-gradient(90deg, #000 0 40%, transparent 60% 100%);
+  -webkit-mask-size: 260% 100%;
+  mask-size: 260% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+}
+
+.sweep-wait {
+  opacity: 0;
+}
+
+.sweep-play {
+  animation: sweep-in 1.3s var(--ease-out) both;
+  animation-delay: var(--hero-delay, 0s);
+}
+
+/* ===== TYPE SCALE =====
+   Tracking tightens as size grows, leading shrinks; small caps get air. */
+.type-display {
+  /* 1, not tighter: gradient-filled letters clip to their own line box. */
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.type-title {
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.type-body {
+  line-height: 1.65;
+  letter-spacing: 0.005em;
+  text-wrap: pretty;
+}
+
+.type-eyebrow {
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.accent-text {
+  background: var(--accent-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== PRESS FEEDBACK =====
+   Hover lifts gently on pointer devices; press answers instantly on
+   pointer-down and settles back with the same ease-out. */
+.press {
+  transition:
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+@media (hover: hover) {
+  .press:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.press:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
+}
+
+/* One sweep of light across the gradient CTA on hover. */
+.sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+  transform: translateX(-110%);
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .sheen:hover::after {
+    transform: translateX(110%);
+    transition: transform 0.9s var(--ease-out);
+  }
+}
+
+/* Underline that grows from the left edge, where reading starts. */
+.link-grow {
+  position: relative;
+}
+
+.link-grow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .link-grow:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.link-grow:focus-visible::after {
+  transform: scaleX(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-in {
+  .hero-in,
+  .sweep-play {
     animation: none;
+  }
+
+  .sweep-wait {
+    opacity: 1;
+  }
+
+  .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .press,
+  .press:hover,
+  .press:active {
+    transform: none;
+  }
+
+  .sheen::after {
+    display: none;
+  }
+}
+
+/* Services numbers pick up the brand gradient as their row is hovered. */
+.service-num {
+  color: #0C0C0C;
+  background: linear-gradient(95deg, #B600A8 0%, #7621B0 55%, #BE4C00 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: currentColor;
+  transition: color 0.6s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .group:hover .service-num {
+    color: transparent;
   }
 }

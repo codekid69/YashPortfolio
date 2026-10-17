@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Mail, Github, Linkedin, Send, Calendar } from "lucide-react";
 import FadeIn from "./FadeIn";
+import RevealHeading from "./RevealHeading";
 
 const CALENDLY_URL = "https://calendly.com/bishtyash069/30min";
 
@@ -51,7 +52,7 @@ export default function ContactSection() {
     };
 
     const inputCls =
-        "w-full px-4 py-3 sm:px-5 sm:py-4 rounded-2xl bg-[#111111] border border-[#D7E2EA]/15 text-[#D7E2EA] text-sm sm:text-base font-light placeholder:text-[#D7E2EA]/30 focus:outline-none focus:border-[#D7E2EA]/40 transition-colors duration-200";
+        "w-full px-4 py-3 sm:px-5 sm:py-4 rounded-2xl bg-[#111111] border border-[#D7E2EA]/15 text-[#EEF3F6] text-base font-light placeholder:text-[#D7E2EA]/40 hover:border-[#D7E2EA]/25 focus:outline-none focus:border-[#B600A8]/70 focus:bg-[#141414] transition-[border-color,background-color,box-shadow] duration-300";
 
     return (
         <section
@@ -60,18 +61,15 @@ export default function ContactSection() {
         >
             {/* Heading + intro */}
             <div className="text-center">
-                <FadeIn y={40} delay={0}>
-                    <h2
-                        className="hero-heading font-black uppercase leading-none tracking-tight"
-                        style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
-                    >
-                        Let&apos;s talk
-                    </h2>
-                </FadeIn>
+                <RevealHeading
+                    text="Let's talk"
+                    className="font-black uppercase type-display"
+                    style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
+                />
 
                 <FadeIn y={20} delay={0.2}>
                     <p
-                        className="text-[#D7E2EA] font-light uppercase tracking-wide mt-6 sm:mt-8 max-w-xl mx-auto"
+                        className="text-[#D7E2EA]/85 font-light uppercase tracking-[0.06em] leading-[1.5] mt-6 sm:mt-8 max-w-xl mx-auto [text-wrap:balance]"
                         style={{ fontSize: "clamp(0.85rem, 1.5vw, 1.2rem)" }}
                     >
                         Have a project in mind? Let&apos;s build something incredible together.
@@ -85,12 +83,12 @@ export default function ContactSection() {
                             href={CALENDLY_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] px-7 py-2.5 sm:px-9 sm:py-3 text-xs sm:text-sm font-medium uppercase tracking-widest hover:bg-[#D7E2EA]/10 transition-colors duration-300"
+                            className="press inline-flex items-center gap-2 rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] px-7 py-3 sm:px-9 sm:py-3 text-xs sm:text-sm font-medium uppercase tracking-[0.16em] hover:bg-[#D7E2EA] hover:text-[#0C0C0C]"
                         >
                             <Calendar size={14} />
                             Book a 30-min Call
                         </a>
-                        <span className="text-[#D7E2EA]/40 text-[10px] sm:text-xs uppercase tracking-widest font-light">
+                        <span className="text-[#D7E2EA]/60 text-[10px] sm:text-xs uppercase tracking-[0.16em] font-light">
                             — or send a message below —
                         </span>
                     </div>
@@ -104,10 +102,10 @@ export default function ContactSection() {
                     className="mt-10 sm:mt-14 md:mt-16 max-w-2xl mx-auto flex flex-col gap-4 sm:gap-5"
                 >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                        <div>
+                        <div className="group">
                             <label
                                 htmlFor="name"
-                                className="block text-[10px] sm:text-xs uppercase tracking-widest text-[#D7E2EA]/50 font-light mb-2"
+                                className="block text-[10px] sm:text-xs uppercase tracking-[0.16em] text-[#D7E2EA]/60 font-normal mb-2 transition-colors duration-300 group-focus-within:text-[#EEF3F6]"
                             >
                                 Name
                             </label>
@@ -121,10 +119,10 @@ export default function ContactSection() {
                                 className={inputCls}
                             />
                         </div>
-                        <div>
+                        <div className="group">
                             <label
                                 htmlFor="email"
-                                className="block text-[10px] sm:text-xs uppercase tracking-widest text-[#D7E2EA]/50 font-light mb-2"
+                                className="block text-[10px] sm:text-xs uppercase tracking-[0.16em] text-[#D7E2EA]/60 font-normal mb-2 transition-colors duration-300 group-focus-within:text-[#EEF3F6]"
                             >
                                 Email
                             </label>
@@ -140,10 +138,10 @@ export default function ContactSection() {
                         </div>
                     </div>
 
-                    <div>
+                    <div className="group">
                         <label
                             htmlFor="message"
-                            className="block text-[10px] sm:text-xs uppercase tracking-widest text-[#D7E2EA]/50 font-light mb-2"
+                            className="block text-[10px] sm:text-xs uppercase tracking-[0.16em] text-[#D7E2EA]/60 font-normal mb-2 transition-colors duration-300 group-focus-within:text-[#EEF3F6]"
                         >
                             Message
                         </label>
@@ -162,7 +160,7 @@ export default function ContactSection() {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="inline-flex items-center gap-2 rounded-full px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base font-medium uppercase tracking-widest text-white transition-transform duration-300 hover:scale-[1.03] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                            className="press sheen inline-flex items-center gap-2 rounded-full px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base font-medium uppercase tracking-[0.16em] text-white disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
                             style={{
                                 background:
                                     "linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)",
@@ -201,10 +199,10 @@ export default function ContactSection() {
                                 href={s.href}
                                 target={s.href.startsWith("http") ? "_blank" : undefined}
                                 rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                className="flex items-center gap-2 text-[#D7E2EA]/70 hover:text-[#D7E2EA] transition-colors duration-200 text-sm sm:text-base font-light"
+                                className="flex items-center gap-2 py-3 -my-3 text-[#D7E2EA]/75 hover:text-[#EEF3F6] transition-colors duration-300 text-sm sm:text-base font-light"
                             >
-                                <Icon size={18} />
-                                {s.label}
+                                <Icon size={18} aria-hidden="true" />
+                                <span className="link-grow">{s.label}</span>
                             </a>
                         );
                     })}
@@ -212,7 +210,7 @@ export default function ContactSection() {
             </FadeIn>
 
             <FadeIn y={10} delay={0.5}>
-                <p className="text-[#D7E2EA]/40 text-xs uppercase tracking-widest mt-16 sm:mt-20 text-center">
+                <p className="text-[#D7E2EA]/60 text-xs uppercase tracking-[0.16em] mt-16 sm:mt-20 text-center">
                     © {new Date().getFullYear()} Yash Bisht
                 </p>
             </FadeIn>

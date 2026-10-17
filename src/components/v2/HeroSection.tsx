@@ -64,7 +64,8 @@ export default function HeroSection() {
                     <a
                         key={l.name}
                         href={l.href}
-                        className="text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity duration-200"
+                        // Padding grows the tap target to 44px; the negative margin keeps the layout.
+                        className="link-grow py-3 -my-3 text-sm md:text-lg lg:text-[1.4rem] tracking-[0.08em] hover:text-[#EEF3F6] transition-colors duration-300"
                     >
                         {l.name}
                     </a>
@@ -73,7 +74,7 @@ export default function HeroSection() {
 
             {/* Heading */}
             <div className="relative z-0 overflow-hidden mt-6 sm:mt-4 md:-mt-5 flex-1 flex flex-col justify-between">
-                <div style={enter(0.15, 40)} className="hero-in w-full">
+                <div style={enter(0.15)} className="sweep sweep-play w-full">
                     <div
                         aria-hidden="true"
                         className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-center text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw]"
@@ -86,13 +87,13 @@ export default function HeroSection() {
                 <div className="relative flex justify-between items-end gap-4 px-4 sm:px-6 md:px-10 pb-5 sm:pb-8 md:pb-10 z-20">
                     {/* The page's real H1: carries the full name for search, styled as the tagline. */}
                     <h1
-                        className="hero-in text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[150px] sm:max-w-[230px] md:max-w-[280px]"
-                        style={{ ...enter(0.35, 20), fontSize: "clamp(0.65rem, 1.4vw, 1.5rem)" }}
+                        className="hero-in text-[#D7E2EA]/80 font-light uppercase tracking-[0.04em] leading-[1.45] max-w-[150px] sm:max-w-[230px] md:max-w-[280px]"
+                        style={{ ...enter(0.55, 20), fontSize: "clamp(0.65rem, 1.4vw, 1.5rem)" }}
                     >
-                        <span className="block font-semibold tracking-wider">Yash Bisht</span>
+                        <span className="block font-semibold tracking-[0.1em] text-[#EEF3F6] mb-0.5">Yash Bisht</span>
                         a full stack &amp; genai engineer driven by shipping striking, production-grade systems
                     </h1>
-                    <div style={enter(0.5, 20)} className="hero-in shrink-0">
+                    <div style={enter(0.7, 20)} className="hero-in shrink-0">
                         <ContactButton />
                     </div>
                 </div>

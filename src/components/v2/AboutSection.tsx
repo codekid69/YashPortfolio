@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import FadeIn from "./FadeIn";
+import RevealHeading from "./RevealHeading";
 import ContactButton from "./ContactButton";
 import AnimatedText from "./AnimatedText";
 
 const BIO =
-    "I'm Yash Bisht. With 3+ years of experience building production-grade SaaS platforms and GenAI systems, i focus on full stack engineering, RAG architectures, and AI-powered products, i truly enjoy working with teams that want to ship fast and stand out. Let's build something incredible together!";
+    "I'm Yash Bisht. With 3+ years of experience building production-grade SaaS platforms and GenAI systems, I focus on full stack engineering, RAG architectures and AI-powered products. I truly enjoy working with teams that want to ship fast and stand out. Let's build something incredible together!";
 
 export default function AboutSection() {
     return (
@@ -81,18 +82,15 @@ export default function AboutSection() {
             </FadeIn>
 
             <div className="relative z-10 flex flex-col items-center gap-10 sm:gap-14 md:gap-16 text-center">
-                <FadeIn y={40} delay={0}>
-                    <h2
-                        className="hero-heading font-black uppercase leading-none tracking-tight"
-                        style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
-                    >
-                        About me
-                    </h2>
-                </FadeIn>
+                <RevealHeading
+                    text="About me"
+                    className="font-black uppercase type-display"
+                    style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
+                />
 
                 <AnimatedText
                     text={BIO}
-                    className="text-[#D7E2EA] font-medium leading-relaxed max-w-[560px] mx-auto"
+                    className="text-[#EEF3F6] font-medium leading-[1.6] tracking-[0.005em] max-w-[560px] mx-auto [text-wrap:pretty]"
                     style={{ fontSize: "clamp(1rem, 2vw, 1.35rem)" }}
                 />
             </div>
