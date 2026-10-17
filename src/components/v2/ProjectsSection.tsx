@@ -7,7 +7,6 @@ import LiveProjectButton from "./LiveProjectButton";
 import ProjectMedia from "./ProjectMedia";
 import { PROJECTS, hostOf, type Project } from "@/data/projects";
 
-// Stacking only on md+; on phones tall cards would pin with their bottoms hidden.
 function useIsDesktop() {
     const [isDesktop, setIsDesktop] = useState(false);
     useEffect(() => {
@@ -31,7 +30,31 @@ interface CardProps {
     isActive: boolean;
 }
 
+// Where a card pins on phones. Normally just under the top with a small peek
+// per card; a card taller than the screen pins only once its bottom edge is
+// on screen, so its buttons are never hidden under the next card.
+function useMobileTop(ref: React.RefObject<HTMLDivElement>, index: number, enabled: boolean) {
+    const base = 64 + index * 12;
+    const [top, setTop] = useState(base);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el || !enabled) return;
+        const update = () => setTop(Math.min(base, window.innerHeight - el.offsetHeight - 8));
+        update();
+        const ro = new ResizeObserver(update);
+        ro.observe(el);
+        window.addEventListener("resize", update);
+        return () => {
+            ro.disconnect();
+            window.removeEventListener("resize", update);
+        };
+    }, [ref, base, enabled]);
+    return top;
+}
+
 function StackCard({ project, index, total, progress, isDesktop, isActive }: CardProps) {
+    const wrapRef = useRef<HTMLDivElement>(null);
+    const mobileTop = useMobileTop(wrapRef, index, !isDesktop);
     const step = 1 / total;
     const isLast = index === total - 1;
     const num = String(index + 1).padStart(2, "0");
@@ -43,8 +66,9 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
 
     return (
         <div
-            className="px-3 sm:px-4 py-3 md:py-0 md:sticky md:h-[85vh] flex items-start justify-center"
-            style={isDesktop ? { top: `calc(5rem + ${index * 20}px)`, perspective: 1400 } : { perspective: 1400 }}
+            ref={wrapRef}
+            className="sticky px-3 sm:px-4 py-3 md:py-0 md:h-[85vh] flex items-start justify-center"
+            style={{ top: isDesktop ? `calc(5rem + ${index * 20}px)` : mobileTop, perspective: 1400 }}
         >
             {/* One-shot entrance (not scroll-linked) so every card always settles flat. */}
             <motion.article
@@ -52,8 +76,8 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ type: "spring", bounce: 0, duration: 1.1 }}
-                style={isDesktop ? { scale, transformOrigin: "50% 0%" } : undefined}
-                className="relative w-full max-w-6xl rounded-[28px] sm:rounded-[40px] md:rounded-[48px] border-2 border-[#D7E2EA] bg-[linear-gradient(180deg,#141414_0%,#0C0C0C_55%)] p-4 sm:p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 items-center will-change-transform md:shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.9)]"
+                style={{ scale, transformOrigin: "50% 0%" }}
+                className="relative w-full max-w-6xl rounded-[28px] sm:rounded-[40px] md:rounded-[48px] border-2 border-[#D7E2EA] bg-[linear-gradient(180deg,#141414_0%,#0C0C0C_55%)] p-4 sm:p-6 md:p-8 grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 items-center will-change-transform shadow-[0_-24px_60px_-20px_rgba(0,0,0,0.9)] md:shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.9)]"
             >
                 {/* Copy */}
                 <div className="md:col-span-5 flex flex-col gap-4 md:gap-5 order-2 md:order-1 md:py-2">
@@ -160,13 +184,11 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                 </a>
 
                 {/* Dims the card as the next one slides over it */}
-                {isDesktop && (
-                    <motion.div
-                        aria-hidden="true"
-                        style={{ opacity: dim }}
-                        className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[#0C0C0C]"
-                    />
-                )}
+                <motion.div
+                    aria-hidden="true"
+                    style={{ opacity: dim }}
+                    className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[#0C0C0C]"
+                />
             </motion.article>
         </div>
     );
@@ -182,32 +204,18 @@ export default function ProjectsSection() {
     const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 30, restDelta: 0.001 });
     const isDesktop = useIsDesktop();
 
-    // Only one video plays at a time. Desktop: the card on top of the stack
-    // (last one whose top has passed ~45% of the viewport). Phones: the video
-    // frame closest to the middle of the screen, since frames sit at the top of
-    // each card and can scroll away before the next card arrives.
+    // Only one video plays at a time: the card on top of the stack, i.e. the
+    // last one whose top has passed ~45% of the viewport.
     const [activeIndex, setActiveIndex] = useState(0);
     const { scrollY } = useScroll();
     useMotionValueEvent(scrollY, "change", () => {
         const root = containerRef.current;
         if (!root) return;
-        const vh = window.innerHeight;
+        const line = window.innerHeight * 0.45;
         let next = 0;
-        if (isDesktop) {
-            root.querySelectorAll("article").forEach((card, i) => {
-                if (card.getBoundingClientRect().top < vh * 0.45) next = i;
-            });
-        } else {
-            let best = Infinity;
-            root.querySelectorAll("[data-media]").forEach((frame, i) => {
-                const r = frame.getBoundingClientRect();
-                const dist = Math.abs(r.top + r.height / 2 - vh / 2);
-                if (dist < best) {
-                    best = dist;
-                    next = i;
-                }
-            });
-        }
+        root.querySelectorAll("article").forEach((card, i) => {
+            if (card.getBoundingClientRect().top < line) next = i;
+        });
         setActiveIndex(next);
     });
 
