@@ -489,9 +489,11 @@ textarea:focus {
     0 0 15px rgba(0, 212, 255, 0.2);
 }
 /* ===== HERO ENTRANCE (CSS-only so the LCP text paints before JS hydrates) ===== */
+/* Starts at 0.01, not 0: Chrome skips fully transparent paints when
+   recording Largest Contentful Paint. */
 @keyframes hero-in {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: translate3d(0, var(--hero-y, 30px), 0);
   }
   to {
