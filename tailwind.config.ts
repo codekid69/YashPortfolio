@@ -93,5 +93,10 @@ const config: Config = {
     },
   },
   plugins: [],
+  // Touch screens fire :hover on tap and keep it; only apply hover where a
+  // real pointer can hover.
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 };
 export default config;

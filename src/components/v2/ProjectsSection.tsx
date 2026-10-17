@@ -66,7 +66,7 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                             {num}
                         </span>
                         <div className="flex flex-col min-w-0 pt-0.5">
-                            <span className="type-eyebrow text-[10px] sm:text-xs font-normal">
+                            <span className="type-eyebrow text-[11px] sm:text-xs font-normal tracking-[0.12em] sm:tracking-[0.18em]">
                                 {project.category}
                             </span>
                             <h3 className="type-title text-[#EEF3F6] text-xl sm:text-2xl md:text-3xl font-semibold uppercase mt-1">
@@ -100,7 +100,7 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                         <LiveProjectButton href={project.link} />
                         <a
                             href={`/projects/${project.slug}`}
-                            className="group/cs inline-flex items-center gap-2 py-3 -my-3 text-sm uppercase tracking-[0.1em] sm:tracking-[0.14em] text-[#D7E2EA]/75 underline decoration-[#D7E2EA]/30 underline-offset-[6px] hover:text-[#EEF3F6] hover:decoration-[#EEF3F6] transition-colors duration-300"
+                            className="press-soft group/cs inline-flex items-center gap-2 py-3 -my-3 text-sm uppercase tracking-[0.1em] sm:tracking-[0.14em] text-[#D7E2EA]/75 underline decoration-[#D7E2EA]/30 underline-offset-[6px] hover:text-[#EEF3F6] hover:decoration-[#EEF3F6] transition-colors duration-300"
                         >
                             Case study<span className="sr-only">: {project.name}</span>
                             <span
@@ -120,7 +120,7 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                     rel="noopener noreferrer"
                     aria-label={`Open ${project.name} live site`}
                     data-media
-                    className="group md:col-span-7 order-1 md:order-2 block rounded-[20px] sm:rounded-[28px] md:rounded-[32px] overflow-hidden border border-[#D7E2EA]/15 bg-[#151515] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D7E2EA]"
+                    className="press-soft group md:col-span-7 order-1 md:order-2 block rounded-[20px] sm:rounded-[28px] md:rounded-[32px] overflow-hidden border border-[#D7E2EA]/15 bg-[#151515] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D7E2EA]"
                 >
                     <div className="flex items-center gap-3 px-4 py-2.5 border-b border-[#D7E2EA]/10">
                         {/* Window controls light up on the card whose video is playing. */}

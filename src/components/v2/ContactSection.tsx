@@ -88,7 +88,7 @@ export default function ContactSection() {
                             <Calendar size={14} />
                             Book a 30-min Call
                         </a>
-                        <span className="text-[#D7E2EA]/60 text-[10px] sm:text-xs uppercase tracking-[0.16em] font-light">
+                        <span className="text-[#D7E2EA]/60 text-[11px] sm:text-xs uppercase tracking-[0.16em] font-light">
                             — or send a message below —
                         </span>
                     </div>
@@ -105,7 +105,7 @@ export default function ContactSection() {
                         <div className="group">
                             <label
                                 htmlFor="name"
-                                className="block text-[10px] sm:text-xs uppercase tracking-[0.16em] text-[#D7E2EA]/60 font-normal mb-2 transition-colors duration-300 group-focus-within:text-[#EEF3F6]"
+                                className="block text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#D7E2EA]/60 font-normal mb-2 transition-colors duration-300 group-focus-within:text-[#EEF3F6]"
                             >
                                 Name
                             </label>
@@ -122,7 +122,7 @@ export default function ContactSection() {
                         <div className="group">
                             <label
                                 htmlFor="email"
-                                className="block text-[10px] sm:text-xs uppercase tracking-[0.16em] text-[#D7E2EA]/60 font-normal mb-2 transition-colors duration-300 group-focus-within:text-[#EEF3F6]"
+                                className="block text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#D7E2EA]/60 font-normal mb-2 transition-colors duration-300 group-focus-within:text-[#EEF3F6]"
                             >
                                 Email
                             </label>
@@ -141,7 +141,7 @@ export default function ContactSection() {
                     <div className="group">
                         <label
                             htmlFor="message"
-                            className="block text-[10px] sm:text-xs uppercase tracking-[0.16em] text-[#D7E2EA]/60 font-normal mb-2 transition-colors duration-300 group-focus-within:text-[#EEF3F6]"
+                            className="block text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#D7E2EA]/60 font-normal mb-2 transition-colors duration-300 group-focus-within:text-[#EEF3F6]"
                         >
                             Message
                         </label>
@@ -199,7 +199,7 @@ export default function ContactSection() {
                                 href={s.href}
                                 target={s.href.startsWith("http") ? "_blank" : undefined}
                                 rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                className="flex items-center gap-2 py-3 -my-3 text-[#D7E2EA]/75 hover:text-[#EEF3F6] transition-colors duration-300 text-sm sm:text-base font-light"
+                                className="press-soft flex items-center gap-2 py-3 -my-3 text-[#D7E2EA]/75 hover:text-[#EEF3F6] transition-colors duration-300 text-sm sm:text-base font-light"
                             >
                                 <Icon size={18} aria-hidden="true" />
                                 <span className="link-grow">{s.label}</span>

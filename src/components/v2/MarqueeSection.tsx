@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 const CDN = "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons";
 const SI = "https://cdn.simpleicons.org";
 
@@ -92,8 +94,23 @@ function Row({
 }
 
 export default function MarqueeSection() {
+    // Stop the loop while it's off screen; nobody is watching it.
+    const ref = useRef<HTMLElement>(null);
+    const [onScreen, setOnScreen] = useState(true);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const io = new IntersectionObserver(([entry]) => setOnScreen(entry.isIntersecting));
+        io.observe(el);
+        return () => io.disconnect();
+    }, []);
+
     return (
-        <section className="relative bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden">
+        <section
+            ref={ref}
+            data-offscreen={onScreen ? undefined : ""}
+            className="relative bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden"
+        >
             <div className="flex flex-col gap-3 sm:gap-4">
                 {/* Row 1: left → right */}
                 <Row items={ROW1} durationSec={45} reverse />

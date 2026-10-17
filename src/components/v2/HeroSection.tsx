@@ -65,7 +65,7 @@ export default function HeroSection() {
                         key={l.name}
                         href={l.href}
                         // Padding grows the tap target to 44px; the negative margin keeps the layout.
-                        className="link-grow py-3 -my-3 text-sm md:text-lg lg:text-[1.4rem] tracking-[0.08em] hover:text-[#EEF3F6] transition-colors duration-300"
+                        className="link-grow press-soft py-3 -my-3 text-sm md:text-lg lg:text-[1.4rem] tracking-[0.08em] hover:text-[#EEF3F6] transition-colors duration-300"
                     >
                         {l.name}
                     </a>

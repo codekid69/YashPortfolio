@@ -95,7 +95,7 @@ function LogoTile({ tech }: { tech: Tech }) {
                     style={tech.invert ? { filter: "invert(1) brightness(1.5)" } : undefined}
                 />
             </div>
-            <span className="text-[10px] sm:text-xs text-[#D7E2EA]/75 font-normal uppercase tracking-[0.08em] text-center transition-colors duration-300 group-hover:text-[#EEF3F6]">
+            <span className="text-[11px] sm:text-xs text-[#D7E2EA]/75 font-normal uppercase tracking-[0.08em] text-center transition-colors duration-300 group-hover:text-[#EEF3F6]">
                 {tech.name}
             </span>
         </div>

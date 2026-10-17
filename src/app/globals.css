@@ -91,7 +91,8 @@ main {
   animation-direction: reverse;
 }
 
-.marquee-track:hover {
+.marquee-track:hover,
+[data-offscreen] .marquee-track {
   animation-play-state: paused;
 }
 
@@ -574,6 +575,7 @@ textarea:focus {
   animation-delay: var(--hero-delay, 0s);
 }
 
+@layer components {
 /* ===== TYPE SCALE =====
    Tracking tightens as size grows, leading shrinks; small caps get air. */
 .type-display {
@@ -604,6 +606,7 @@ textarea:focus {
 
 .tabular {
   font-variant-numeric: tabular-nums;
+}
 }
 
 /* Gradient-filled text only paints inside its own box, so glyphs that
@@ -642,6 +645,17 @@ textarea:focus {
 
 .press:active {
   transform: scale(0.97);
+  transition-duration: 0.1s;
+}
+
+/* Text links and media frames: dim / settle slightly on press. */
+.press-soft {
+  transition: transform 0.5s var(--ease-out), opacity 0.2s ease;
+}
+
+.press-soft:active {
+  transform: scale(0.985);
+  opacity: 0.85;
   transition-duration: 0.1s;
 }
 
@@ -697,7 +711,23 @@ textarea:focus {
   transform: scaleX(1);
 }
 
+/* Increased contrast: full-strength text and firmer hairlines. */
+@media (prefers-contrast: more) {
+  [class*="text-[#D7E2EA]/"],
+  .type-eyebrow {
+    color: #EEF3F6 !important;
+  }
+
+  [class*="border-[#D7E2EA]/"] {
+    border-color: rgba(215, 226, 234, 0.6) !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .press-soft:active {
+    transform: none;
+  }
+
   .hero-in,
   .sweep-play {
     animation: none;
