@@ -60,7 +60,7 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                     <div className="flex items-start gap-4">
                         <span
                             aria-hidden="true"
-                            className="hero-heading tabular font-black leading-[0.8] tracking-[-0.04em] shrink-0"
+                            className="hero-heading ink-pad tabular font-black leading-[0.8] shrink-0"
                             style={{ fontSize: "clamp(2.5rem, 6vw, 88px)" }}
                         >
                             {num}

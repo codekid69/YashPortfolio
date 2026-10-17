@@ -606,6 +606,14 @@ textarea:focus {
   font-variant-numeric: tabular-nums;
 }
 
+/* Gradient-filled text only paints inside its own box, so glyphs that
+   overhang a tight line-height get sliced. Pad the box out to cover the
+   ink and pull the margin back so layout doesn't move. */
+.ink-pad {
+  padding: 0.14em 0.08em;
+  margin: -0.14em -0.08em;
+}
+
 .accent-text {
   background: var(--accent-text);
   -webkit-background-clip: text;

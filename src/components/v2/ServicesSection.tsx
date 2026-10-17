@@ -58,7 +58,7 @@ export default function ServicesSection() {
                             }}
                         >
                             <span
-                                className="service-num tabular font-black leading-none tracking-[-0.04em] shrink-0"
+                                className="service-num ink-pad tabular font-black leading-none shrink-0"
                                 style={{ fontSize: "clamp(3rem, 10vw, 140px)" }}
                             >
                                 {s.num}
