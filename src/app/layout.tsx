@@ -129,6 +129,7 @@ const jsonLd = {
         addressCountry: "IN",
       },
       sameAs: [
+        "https://yashbisht.carrd.co/",
         "https://github.com/codekid69",
         "https://www.linkedin.com/in/yashhbisht/",
         "https://twitter.com/iyash069",
@@ -337,15 +338,6 @@ export default function RootLayout({
         >
           {JSON.stringify(jsonLd)}
         </Script>
-
-        {/* Visually-hidden semantic supplement for SEO / screen readers.
-            The visible hero h1 reads "Hi, I'm Yash" — this provides the
-            full descriptive heading without disrupting the design. */}
-        <h1 className="sr-only">
-          Yash Bisht — Full Stack &amp; GenAI Software Engineer building
-          production-grade SaaS platforms, RAG systems, and AI-powered products
-          with React, Next.js, Node.js, OpenAI, and Gemini.
-        </h1>
 
         {children}
 

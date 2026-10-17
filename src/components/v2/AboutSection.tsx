@@ -6,7 +6,7 @@ import ContactButton from "./ContactButton";
 import AnimatedText from "./AnimatedText";
 
 const BIO =
-    "With 3+ years of experience building production-grade SaaS platforms and GenAI systems, i focus on full stack engineering, RAG architectures, and AI-powered products, i truly enjoy working with teams that want to ship fast and stand out. Let's build something incredible together!";
+    "I'm Yash Bisht. With 3+ years of experience building production-grade SaaS platforms and GenAI systems, i focus on full stack engineering, RAG architectures, and AI-powered products, i truly enjoy working with teams that want to ship fast and stand out. Let's build something incredible together!";
 
 export default function AboutSection() {
     return (

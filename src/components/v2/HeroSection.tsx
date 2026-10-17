@@ -84,12 +84,14 @@ export default function HeroSection() {
 
                 {/* Bottom bar */}
                 <div className="relative flex justify-between items-end gap-4 px-4 sm:px-6 md:px-10 pb-5 sm:pb-8 md:pb-10 z-20">
-                    <p
-                        className="hero-in text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[140px] sm:max-w-[220px] md:max-w-[260px]"
+                    {/* The page's real H1: carries the full name for search, styled as the tagline. */}
+                    <h1
+                        className="hero-in text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[150px] sm:max-w-[230px] md:max-w-[280px]"
                         style={{ ...enter(0.35, 20), fontSize: "clamp(0.65rem, 1.4vw, 1.5rem)" }}
                     >
+                        <span className="block font-semibold tracking-wider">Yash Bisht</span>
                         a full stack &amp; genai engineer driven by shipping striking, production-grade systems
-                    </p>
+                    </h1>
                     <div style={enter(0.5, 20)} className="hero-in shrink-0">
                         <ContactButton />
                     </div>

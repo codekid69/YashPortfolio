@@ -5,78 +5,7 @@ import { motion, useMotionValueEvent, useScroll, useSpring, useTransform, type M
 import FadeIn from "./FadeIn";
 import LiveProjectButton from "./LiveProjectButton";
 import ProjectMedia from "./ProjectMedia";
-
-type Project = {
-    category: string;
-    name: string;
-    tagline: string;
-    description: string;
-    tags: string[];
-    link: string;
-    // Still frame from the same recording; shown until the video is playing.
-    poster: string;
-    video: string;
-};
-
-const PROJECTS: Project[] = [
-    {
-        category: "BeyondChats · Built solo, end to end",
-        name: "Clinic OS",
-        tagline: "Your whole clinic, in one place",
-        description:
-            "A multi-tenant clinic SaaS running live in clinics. Bookings, WhatsApp reminders with one-tap confirm, Razorpay payment links, Google Calendar sync and AI lab-report summaries, all in one place.",
-        tags: ["Laravel", "PostgreSQL", "React", "WhatsApp API", "Razorpay"],
-        link: "https://clinicos.beyondchats.com/",
-        poster: "/projects/clinicos.jpg",
-        video: "/projects/clinicos.webm",
-    },
-    {
-        category: "Client · End-to-End Product",
-        name: "PopCom",
-        tagline: "Turn creator traffic into trackable sales",
-        description:
-            "A creator-commerce platform that ties influencer traffic to real revenue, with smart tracking links, per-creator analytics and performance-based payouts on a multi-tenant backend.",
-        tags: ["Next.js", "TypeScript", "Supabase", "Node.js"],
-        link: "https://www.getpopcom.com/",
-        poster: "/projects/popcom.jpg",
-        video: "/projects/popcom.webm",
-    },
-    {
-        category: "Client · Real Estate",
-        name: "Dukiya Infra",
-        tagline: "The art of elevation",
-        description:
-            "A luxury real-estate platform with cinematic property showcases, brochures on demand and built-in lead capture, engineered SEO-first for sub-second loads.",
-        tags: ["React", "Vite", "Node.js", "MongoDB"],
-        link: "https://www.dukiyainfra.com/",
-        poster: "/projects/dukiya.jpg",
-        video: "/projects/dukiya.webm",
-    },
-    {
-        category: "Client · Interiors",
-        name: "Hariom Interior",
-        tagline: "Mumbai's premium interior execution firm",
-        description:
-            "The web home of a fit-out firm working with brands like Taj, Marriott and Hyatt, with a sector-wise project portfolio, factory showcases and consultation booking.",
-        tags: ["Corporate Site", "Project Portfolio", "Lead Capture", "SEO"],
-        link: "https://www.hariominterior.in/",
-        poster: "/projects/hariom.jpg",
-        video: "/projects/hariom.webm",
-    },
-    {
-        category: "Personal · GenAI",
-        name: "Thread AI",
-        tagline: "AI that actually knows you",
-        description:
-            "A personal AI with long-term memory. It recalls past conversations, learns your patterns, nudges you to reconnect with people and scans the web for gigs that match your skills.",
-        tags: ["LLM Memory", "RAG", "Google Auth", "Opportunity Scanning"],
-        link: "https://thread-ai-phi.vercel.app/",
-        poster: "/projects/threadai.jpg",
-        video: "/projects/threadai.webm",
-    },
-];
-
-const hostOf = (url: string) => new URL(url).hostname.replace(/^www\./, "");
+import { PROJECTS, hostOf, type Project } from "@/data/projects";
 
 // Stacking only on md+; on phones tall cards would pin with their bottoms hidden.
 function useIsDesktop() {
@@ -167,8 +96,14 @@ function StackCard({ project, index, total, progress, isDesktop, isActive }: Car
                         ))}
                     </ul>
 
-                    <div className="pt-1">
+                    <div className="pt-1 flex flex-wrap items-center gap-x-6 gap-y-3">
                         <LiveProjectButton href={project.link} />
+                        <a
+                            href={`/projects/${project.slug}`}
+                            className="text-sm uppercase tracking-widest text-[#D7E2EA]/70 underline decoration-[#D7E2EA]/30 underline-offset-[6px] hover:text-[#D7E2EA] hover:decoration-[#D7E2EA] transition-colors"
+                        >
+                            Case study<span className="sr-only">: {project.name}</span> →
+                        </a>
                     </div>
                 </div>
 
