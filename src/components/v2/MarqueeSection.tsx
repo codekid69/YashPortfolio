@@ -1,33 +1,37 @@
 "use client";
 
-const CDN = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
+const CDN = "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons";
+const SI = "https://cdn.simpleicons.org";
 
 const TECHS = [
     { name: "React", icon: `${CDN}/react/react-original.svg`, color: "#61DAFB" },
-    { name: "Next.js", icon: `${CDN}/nextjs/nextjs-original.svg`, color: "#FFFFFF" },
+    { name: "Next.js", icon: `${SI}/nextdotjs/FFFFFF`, color: "#FFFFFF" },
     { name: "TypeScript", icon: `${CDN}/typescript/typescript-original.svg`, color: "#3178C6" },
-    { name: "JavaScript", icon: `${CDN}/javascript/javascript-original.svg`, color: "#F7DF1E" },
-    { name: "Tailwind", icon: `${CDN}/tailwindcss/tailwindcss-original.svg`, color: "#06B6D4" },
-    { name: "Redux", icon: `${CDN}/redux/redux-original.svg`, color: "#764ABC" },
     { name: "Node.js", icon: `${CDN}/nodejs/nodejs-original.svg`, color: "#339933" },
-    { name: "Express", icon: `${CDN}/express/express-original.svg`, color: "#FFFFFF" },
-    { name: "NestJS", icon: `https://cdn.simpleicons.org/nestjs/E0234E`, color: "#E0234E" },
-    { name: "FastAPI", icon: `${CDN}/fastapi/fastapi-original.svg`, color: "#009688" },
+    { name: "Laravel", icon: `${CDN}/laravel/laravel-original.svg`, color: "#FF2D20" },
+    { name: "PHP", icon: `${CDN}/php/php-original.svg`, color: "#777BB4" },
+    { name: "Vite", icon: `${CDN}/vitejs/vitejs-original.svg`, color: "#BD34FE" },
+    { name: "Tailwind", icon: `${CDN}/tailwindcss/tailwindcss-original.svg`, color: "#06B6D4" },
+    { name: "NestJS", icon: `${SI}/nestjs/E0234E`, color: "#E0234E" },
+    { name: "Express", icon: `${SI}/express/FFFFFF`, color: "#FFFFFF" },
     { name: "Python", icon: `${CDN}/python/python-original.svg`, color: "#3776AB" },
-    { name: "MongoDB", icon: `${CDN}/mongodb/mongodb-original.svg`, color: "#47A248" },
+    { name: "FastAPI", icon: `${CDN}/fastapi/fastapi-original.svg`, color: "#009688" },
     { name: "PostgreSQL", icon: `${CDN}/postgresql/postgresql-original.svg`, color: "#336791" },
+    { name: "MongoDB", icon: `${CDN}/mongodb/mongodb-original.svg`, color: "#47A248" },
     { name: "Supabase", icon: `${CDN}/supabase/supabase-original.svg`, color: "#3ECF8E" },
-    { name: "Firebase", icon: `${CDN}/firebase/firebase-original.svg`, color: "#FFCA28" },
     { name: "Redis", icon: `${CDN}/redis/redis-original.svg`, color: "#DC382D" },
+    { name: "WhatsApp API", icon: `${SI}/whatsapp/25D366`, color: "#25D366" },
+    { name: "Razorpay", icon: `${SI}/razorpay/3395FF`, color: "#3395FF" },
+    { name: "Playwright", icon: `${CDN}/playwright/playwright-original.svg`, color: "#2EAD33" },
     { name: "Docker", icon: `${CDN}/docker/docker-original.svg`, color: "#2496ED" },
-    { name: "Vercel", icon: `${CDN}/vercel/vercel-original.svg`, color: "#FFFFFF" },
-    { name: "GitHub", icon: `${CDN}/github/github-original.svg`, color: "#FFFFFF" },
+    { name: "GitLab CI/CD", icon: `${CDN}/gitlab/gitlab-original.svg`, color: "#FC6D26" },
+    { name: "Vercel", icon: `${SI}/vercel/FFFFFF`, color: "#FFFFFF" },
+    { name: "GitHub", icon: `${SI}/github/FFFFFF`, color: "#FFFFFF" },
     { name: "GCP", icon: `${CDN}/googlecloud/googlecloud-original.svg`, color: "#4285F4" },
-    { name: "Azure", icon: `${CDN}/azure/azure-original.svg`, color: "#0078D4" },
 ];
 
-const ROW1 = TECHS.slice(0, 11);
-const ROW2 = TECHS.slice(11);
+const ROW1 = TECHS.slice(0, 12);
+const ROW2 = TECHS.slice(12);
 
 interface Tech {
     name: string;

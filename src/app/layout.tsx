@@ -77,14 +77,6 @@ export const metadata: Metadata = {
       "Building production-grade SaaS and GenAI systems. React, Next.js, Node.js, RAG, OpenAI, Gemini. Currently shipping AI conversational products at BeyondChats.",
     url: SITE_URL,
     siteName: "Yash Bisht Portfolio",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Yash Bisht — Full Stack & GenAI Engineer",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -95,7 +87,6 @@ export const metadata: Metadata = {
       "Production-grade SaaS, RAG systems, and AI-powered products. React · Next.js · Node.js · OpenAI · Gemini.",
     creator: "@iyash069",
     site: "@iyash069",
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -112,10 +103,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: SITE_URL,
-  },
-  icons: {
-    icon: "/icon.svg",
-    apple: "/icon.svg",
   },
   verification: {
     google: "googlebed620731671a89a",
@@ -135,9 +122,8 @@ const jsonLd = {
       alternateName: ["Yash", "codekid69"],
       jobTitle: "Full Stack & GenAI Software Engineer",
       url: SITE_URL,
-      image: `${SITE_URL}/og-image.png`,
+      image: `${SITE_URL}/opengraph-image`,
       email: "mailto:bishtyash069@gmail.com",
-      telephone: "+91-8860643975",
       address: {
         "@type": "PostalAddress",
         addressLocality: "New Delhi",
@@ -149,7 +135,7 @@ const jsonLd = {
         "https://twitter.com/iyash069",
       ],
       description:
-        "Full Stack Developer and GenAI Engineer with 2+ years of experience designing and shipping production-grade SaaS platforms, RAG architectures, and AI-powered products.",
+        "Full Stack Developer and GenAI Engineer with 3+ years of experience designing and shipping production-grade SaaS platforms, RAG architectures, and AI-powered products.",
       knowsAbout: [
         "React",
         "Next.js",
@@ -159,6 +145,8 @@ const jsonLd = {
         "Python",
         "FastAPI",
         "NestJS",
+        "Laravel",
+        "PHP",
         "Express.js",
         "MongoDB",
         "PostgreSQL",
@@ -178,6 +166,11 @@ const jsonLd = {
         "Docker",
         "Vercel",
         "GitHub Actions",
+        "GitLab CI/CD",
+        "Playwright",
+        "WhatsApp Business API",
+        "Razorpay",
+        "OAuth 2.0",
         "Google Cloud Platform",
         "Azure",
         "REST APIs",
@@ -201,7 +194,7 @@ const jsonLd = {
         name: "Software Engineer",
         occupationLocation: { "@type": "City", name: "New Delhi" },
         skills:
-          "React, Next.js, Node.js, TypeScript, GenAI, RAG, OpenAI, Gemini, MongoDB, PostgreSQL",
+          "React, Next.js, Node.js, Laravel, TypeScript, GenAI, RAG, OpenAI, Gemini, PostgreSQL, MongoDB",
       },
     },
     {
@@ -213,17 +206,12 @@ const jsonLd = {
         "Portfolio of Yash Bisht — Full Stack Developer & GenAI Engineer building production-grade SaaS platforms, RAG architectures, and AI-powered products.",
       inLanguage: "en-US",
       publisher: { "@id": PERSON_ID },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: `${SITE_URL}/?q={search_term_string}`,
-        "query-input": "required name=search_term_string",
-      },
     },
     {
       "@type": "ProfessionalService",
       name: "Yash Bisht — Freelance Full Stack & GenAI Engineering",
       url: SITE_URL,
-      image: `${SITE_URL}/og-image.png`,
+      image: `${SITE_URL}/opengraph-image`,
       description:
         "Freelance full stack and GenAI engineering services — SaaS platforms, RAG systems, AI-powered features, backend & API engineering, performance & SEO optimization.",
       provider: { "@id": PERSON_ID },
@@ -279,6 +267,14 @@ const jsonLd = {
           },
         ],
       },
+    },
+    {
+      "@type": "CreativeWork",
+      name: "Clinic OS",
+      description:
+        "Multi-tenant clinic management SaaS by BeyondChats, built end to end by Yash Bisht — bookings, WhatsApp and email automation, Razorpay payments, Google Calendar sync, EMR import and AI lab-report summaries.",
+      url: "https://clinicos.beyondchats.com/",
+      author: { "@id": PERSON_ID },
     },
     {
       "@type": "CreativeWork",

@@ -2,7 +2,8 @@
 
 import FadeIn from "./FadeIn";
 
-const CDN = "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
+const CDN = "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons";
+const SI = "https://cdn.simpleicons.org";
 
 interface Tech {
     name: string;
@@ -15,8 +16,9 @@ const GROUPS: { name: string; techs: Tech[] }[] = [
         name: "Frontend",
         techs: [
             { name: "React", icon: `${CDN}/react/react-original.svg` },
-            { name: "Next.js", icon: `${CDN}/nextjs/nextjs-original.svg` },
+            { name: "Next.js", icon: `${SI}/nextdotjs/FFFFFF` },
             { name: "TypeScript", icon: `${CDN}/typescript/typescript-original.svg` },
+            { name: "Vite", icon: `${CDN}/vitejs/vitejs-original.svg` },
             { name: "Tailwind", icon: `${CDN}/tailwindcss/tailwindcss-original.svg` },
             { name: "Redux", icon: `${CDN}/redux/redux-original.svg` },
             { name: "JavaScript", icon: `${CDN}/javascript/javascript-original.svg` },
@@ -26,7 +28,9 @@ const GROUPS: { name: string; techs: Tech[] }[] = [
         name: "Backend",
         techs: [
             { name: "Node.js", icon: `${CDN}/nodejs/nodejs-original.svg` },
-            { name: "Express", icon: `${CDN}/express/express-original.svg` },
+            { name: "Laravel", icon: `${CDN}/laravel/laravel-original.svg` },
+            { name: "PHP", icon: `${CDN}/php/php-original.svg` },
+            { name: "Express", icon: `${SI}/express/FFFFFF` },
             { name: "NestJS", icon: `${CDN}/nestjs/nestjs-original.svg` },
             { name: "FastAPI", icon: `${CDN}/fastapi/fastapi-original.svg` },
             { name: "Python", icon: `${CDN}/python/python-original.svg` },
@@ -35,11 +39,11 @@ const GROUPS: { name: string; techs: Tech[] }[] = [
     {
         name: "Databases",
         techs: [
-            { name: "MongoDB", icon: `${CDN}/mongodb/mongodb-original.svg` },
             { name: "PostgreSQL", icon: `${CDN}/postgresql/postgresql-original.svg` },
+            { name: "MongoDB", icon: `${CDN}/mongodb/mongodb-original.svg` },
             { name: "Supabase", icon: `${CDN}/supabase/supabase-original.svg` },
-            { name: "Firebase", icon: `${CDN}/firebase/firebase-original.svg` },
             { name: "Redis", icon: `${CDN}/redis/redis-original.svg` },
+            { name: "Firebase", icon: `${CDN}/firebase/firebase-original.svg` },
         ],
     },
     {
@@ -50,17 +54,27 @@ const GROUPS: { name: string; techs: Tech[] }[] = [
                 icon: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
                 invert: true,
             },
-            { name: "LangChain", icon: `https://cdn.simpleicons.org/langchain/FFFFFF` },
-            { name: "Python", icon: `${CDN}/python/python-original.svg` },
-            { name: "FastAPI", icon: `${CDN}/fastapi/fastapi-original.svg` },
+            { name: "Gemini", icon: `${SI}/googlegemini/8E75B2` },
+            { name: "LangChain", icon: `${SI}/langchain/FFFFFF` },
         ],
     },
     {
-        name: "DevOps",
+        name: "Integrations & Testing",
+        techs: [
+            { name: "WhatsApp API", icon: `${SI}/whatsapp/25D366` },
+            { name: "Razorpay", icon: `${SI}/razorpay/3395FF` },
+            { name: "Google Calendar", icon: `${SI}/googlecalendar/4285F4` },
+            { name: "Playwright", icon: `${CDN}/playwright/playwright-original.svg` },
+            { name: "Sentry", icon: `${SI}/sentry/FFFFFF` },
+        ],
+    },
+    {
+        name: "DevOps & Cloud",
         techs: [
             { name: "Docker", icon: `${CDN}/docker/docker-original.svg` },
-            { name: "Vercel", icon: `${CDN}/vercel/vercel-original.svg` },
-            { name: "GitHub", icon: `${CDN}/github/github-original.svg` },
+            { name: "GitLab CI/CD", icon: `${CDN}/gitlab/gitlab-original.svg` },
+            { name: "GitHub", icon: `${SI}/github/FFFFFF` },
+            { name: "Vercel", icon: `${SI}/vercel/FFFFFF` },
             { name: "GCP", icon: `${CDN}/googlecloud/googlecloud-original.svg` },
             { name: "Azure", icon: `${CDN}/azure/azure-original.svg` },
         ],

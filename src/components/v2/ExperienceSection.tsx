@@ -2,16 +2,30 @@
 
 import FadeIn from "./FadeIn";
 
-const EXPERIENCES = [
+type Experience = {
+    role: string;
+    company: string;
+    period: string;
+    type: string;
+    highlight?: string;
+    impacts: string[];
+    stack?: string[];
+};
+
+const EXPERIENCES: Experience[] = [
     {
         role: "Software Engineer",
         company: "BeyondChats",
         period: "Mar 2026 – Present",
         type: "Full-time · Remote",
+        highlight: "Built Clinic OS solo, end to end",
         impacts: [
-            "Architecting AI conversational experiences at the core of the product — chatbots, intent-driven flows, and live-agent handoff serving real businesses at scale",
-            "Shipping production RAG pipelines over customer knowledge bases with sub-second retrieval, alongside real-time messaging infrastructure built on Next.js and Node.js",
+            "Designed and shipped Clinic OS, a multi-tenant clinic management SaaS covering bookings, public booking links, patient records, check-in, prescriptions and reports, now running live in clinics",
+            "Automated patient communication on WhatsApp and email: reminders with one-tap confirm, follow-up journeys, rating surveys and report delivery",
+            "Integrated Razorpay payment links and pay-before-visit, two-way Google Calendar sync, the BeyondChats chatbot inbox over OAuth and MediXcel EMR import, plus AI lab-report summaries for patients and doctors",
+            "Owned dev-to-prod delivery: role-based access, an operator console for onboarding clinics, analytics dashboards, GitLab CI/CD with safe migrations, post-deploy smoke checks and Playwright E2E across devices",
         ],
+        stack: ["Laravel", "PHP", "PostgreSQL", "React", "Vite", "Node.js", "WhatsApp Business API", "Razorpay", "Google Calendar API", "OAuth 2.0", "GitLab CI/CD", "Playwright", "Sentry"],
     },
     {
         role: "Software Engineer",
@@ -93,6 +107,11 @@ export default function ExperienceSection() {
                                 <span className="text-[#D7E2EA]/70 text-sm font-light">
                                     {e.role}
                                 </span>
+                                {e.highlight && (
+                                    <span className="mt-2 self-start rounded-full border border-[#D7E2EA]/40 px-3 py-1 text-[11px] uppercase tracking-wider text-[#D7E2EA]">
+                                        {e.highlight}
+                                    </span>
+                                )}
                             </div>
                             <ul className="sm:w-2/3 flex flex-col gap-3">
                                 {e.impacts.map((imp, j) => (
@@ -104,6 +123,18 @@ export default function ExperienceSection() {
                                         — {imp}
                                     </li>
                                 ))}
+                                {e.stack && (
+                                    <li className="flex flex-wrap gap-2 pt-2" aria-label="Stack">
+                                        {e.stack.map((t) => (
+                                            <span
+                                                key={t}
+                                                className="rounded-full border border-[#D7E2EA]/20 px-2.5 py-0.5 text-[11px] uppercase tracking-wider text-[#D7E2EA]/60 font-light"
+                                            >
+                                                {t}
+                                            </span>
+                                        ))}
+                                    </li>
+                                )}
                             </ul>
                         </div>
                     </FadeIn>
