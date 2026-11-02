@@ -25,7 +25,7 @@ export const PROJECTS: Project[] = [
         name: "Clinic OS",
         tagline: "Your whole clinic, in one place",
         description:
-            "A multi-tenant clinic SaaS running live in clinics. Bookings, WhatsApp reminders with one-tap confirm, Razorpay payment links, Google Calendar sync and AI lab-report summaries, all in one place.",
+            "A multi-tenant clinic SaaS running live in clinics. Bookings, WhatsApp reminders with one-tap confirm, Razorpay payment links, Google Calendar sync and AI lab-report summaries.",
         tags: ["Laravel", "PostgreSQL", "React", "WhatsApp API", "Razorpay"],
         link: "https://clinicos.beyondchats.com/",
         poster: "/projects/clinicos.jpg",
@@ -46,6 +46,31 @@ export const PROJECTS: Project[] = [
         stack: ["Laravel", "PHP", "PostgreSQL", "React", "Vite", "Node.js", "WhatsApp Business API", "Razorpay", "Google Calendar API", "OAuth 2.0", "GitLab CI/CD", "Playwright", "Sentry"],
     },
     {
+        slug: "kuinn",
+        category: "Client · Backend, dashboard and cloud",
+        name: "Kuinn",
+        tagline: "Marketplace listings, checked before they ship",
+        description:
+            "A listing agent for D2C brands selling on Amazon and Flipkart. It checks every field against each marketplace's rules and waits for a person on the team to approve before anything is published.",
+        tags: ["FastAPI", "PostgreSQL", "React", "TanStack", "Google Cloud"],
+        link: "https://www.kuinn.in/",
+        poster: "/projects/kuinn.jpg",
+        video: "/projects/kuinn",
+        role: "Engineer across the backend, the dashboard and the Google Cloud setup",
+        overview:
+            "Amazon and Flipkart each have their own rulebook, and one wrong field can get a listing suppressed. With Kuinn a brand uploads its catalogue once. Every listing is checked against the marketplace's rules, any failure comes back with a plain fix, and nothing is sent until someone on the team approves it. AI drafting in the brand's voice is in development, and AI never publishes on its own.",
+        highlights: [
+            "Rules engine that checks every listing field against Amazon and Flipkart category rules and explains each failure with a fix",
+            "Human approval on every listing: nothing reaches a marketplace without a person signing off",
+            "Marketplace connections over OAuth, with adapters that publish through the Amazon and Flipkart APIs",
+            "Bulk catalogue upload and review queues for the brand's team",
+            "PostgreSQL job queue and background workers, with row-level security keeping each brand's data apart",
+            "One typed API contract shared by backend and dashboard, from OpenAPI to generated TypeScript types",
+            "Production on Google Cloud: Cloud Run, Cloud SQL PostgreSQL 17 and infrastructure as code with OpenTofu",
+        ],
+        stack: ["Python", "FastAPI", "PostgreSQL", "pgvector", "React", "TypeScript", "TanStack Router", "Tailwind CSS", "Cloud Run", "Cloud SQL", "OpenTofu", "Docker", "Playwright"],
+    },
+    {
         slug: "popcom",
         category: "Client · End-to-End Product",
         name: "PopCom",
@@ -58,37 +83,15 @@ export const PROJECTS: Project[] = [
         video: "/projects/popcom",
         role: "Full stack engineer, end-to-end product build",
         overview:
-            "Influencer content drives traffic, but brands rarely know which creators actually drive sales. PopCom closes that gap: brands and creators collaborate on one platform where every sale is attributed to the creator who drove it, and payouts follow performance.",
+            "Influencer content drives traffic, but brands rarely know which creators actually drive sales. On PopCom, brands and creators work on one platform. Every sale is credited to the creator who drove it, and creators are paid on performance.",
         highlights: [
-            "Smart tracking links that attribute sales, not just clicks, to individual creators",
+            "Smart tracking links that credit each sale to the creator who drove it",
             "Real-time, per-creator analytics and reporting for brands",
             "Performance-based creator payouts",
             "E-commerce platform integration",
             "Multi-tenant architecture with strict data isolation between brands",
         ],
         stack: ["Next.js", "TypeScript", "Tailwind", "Supabase", "Node.js"],
-    },
-    {
-        slug: "dukiya-infra",
-        category: "Client · Real Estate",
-        name: "Dukiya Infra",
-        tagline: "The art of elevation",
-        description:
-            "A luxury real-estate platform with cinematic property showcases, brochures on demand and built-in lead capture, engineered SEO-first for sub-second loads.",
-        tags: ["React", "Vite", "Node.js", "MongoDB"],
-        link: "https://www.dukiyainfra.com/",
-        poster: "/projects/dukiya.jpg",
-        video: "/projects/dukiya",
-        role: "Full stack developer",
-        overview:
-            "A luxury property platform for Dukiya Infra, built to feel as premium as the homes it sells while staying fast and search-friendly. Buyers browse properties, download brochures and reach the sales team in a couple of taps.",
-        highlights: [
-            "Cinematic property showcases with brochures on demand",
-            "Lead capture built in: expression-of-interest forms, meeting scheduling and WhatsApp chat",
-            "SEO-first architecture and an optimized image pipeline",
-            "Sub-second load times on a production-ready backend serving dynamic property data",
-        ],
-        stack: ["React", "Vite", "Node.js", "Express", "MongoDB", "Tailwind"],
     },
     {
         slug: "hariom-interior",
@@ -103,33 +106,12 @@ export const PROJECTS: Project[] = [
         video: "/projects/hariom",
         role: "Web developer",
         overview:
-            "Hari Om Interior delivers turnkey hospitality, commercial and residential fit-outs, with in-house manufacturing and brands like Taj, Marriott and Hyatt among its partners. The site presents that scale clearly and turns visitors into consultation requests.",
+            "Hari Om Interior delivers turnkey hospitality, commercial and residential fit-outs, with in-house manufacturing and brands like Taj, Marriott and Hyatt among its partners. The site shows the firm's projects by sector and lets visitors book a consultation.",
         highlights: [
             "Project portfolio filterable by sector: hotels and resorts, malls and real estate",
             "Showcases for the firm's manufacturing units and turnkey services",
             "Company, journal, media and FAQ sections",
             "Consultation booking, WhatsApp and enquiry forms for lead capture",
-        ],
-    },
-    {
-        slug: "thread-ai",
-        category: "Personal · GenAI",
-        name: "Thread AI",
-        tagline: "AI that actually knows you",
-        description:
-            "A personal AI with long-term memory. It recalls past conversations, learns your patterns, nudges you to reconnect with people and scans the web for gigs that match your skills.",
-        tags: ["LLM Memory", "RAG", "Google Auth", "Opportunity Scanning"],
-        link: "https://thread-ai-phi.vercel.app/",
-        poster: "/projects/threadai.jpg",
-        video: "/projects/threadai",
-        role: "Solo builder: product, design and engineering",
-        overview:
-            "Every chatbot forgets you the moment you close the tab. Thread is a personal intelligence system that remembers: it learns from your conversations and turns scattered thoughts, relationships and opportunities into structured understanding.",
-        highlights: [
-            "Thread Mind: long-term memory, pattern detection and context recall across conversations",
-            "Thread Bridge: maps meaningful relationships and gently suggests reconnecting",
-            "Thread Signal: scans the web for gigs and opportunities that match your skills",
-            "One-tap Google sign-in, private by design",
         ],
     },
 ];

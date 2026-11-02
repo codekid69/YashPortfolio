@@ -206,7 +206,7 @@ function StackCard({ project, index, mobileBase, mobileCardHeight, total, progre
                                     image={project.poster}
                                     video={project.video}
                                     active={isActive}
-                                    alt={`${project.name} — ${project.tagline}`}
+                                    alt={`${project.name}: ${project.tagline}`}
                                     sizes="(max-width: 768px) 100vw, 60vw"
                                 />
                             </div>

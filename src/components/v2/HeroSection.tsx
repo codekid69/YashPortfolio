@@ -91,7 +91,7 @@ export default function HeroSection() {
                         style={{ ...enter(0.55, 20), fontSize: "clamp(0.65rem, 1.4vw, 1.5rem)" }}
                     >
                         <span className="block font-semibold tracking-[0.1em] text-[#EEF3F6] mb-0.5">Yash Bisht</span>
-                        a full stack &amp; genai engineer driven by shipping striking, production-grade systems
+                        a full stack &amp; genai engineer who ships saas and ai products to real users
                     </h1>
                     <div style={enter(0.7, 20)} className="hero-in shrink-0">
                         <ContactButton />

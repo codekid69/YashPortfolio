@@ -15,11 +15,24 @@ type Experience = {
 
 const EXPERIENCES: Experience[] = [
     {
+        role: "Senior Software Engineer",
+        company: "Kuinn AI · Rawcult",
+        period: "Sep 2026 to Present",
+        type: "Hybrid · New Delhi",
+        impacts: [
+            "Own the backend and dashboard of a multi-tenant platform that prepares Amazon and Flipkart listings for D2C brands",
+            "Built the Python, FastAPI and PostgreSQL APIs, background jobs, tenant isolation and marketplace adapters",
+            "Kept AI generation behind a strict boundary: every listing passes the rules engine and a human approval, and AI can never publish",
+            "React and TypeScript dashboard typed from the OpenAPI contract, deployed on Google Cloud with Cloud Run and Cloud SQL",
+            "Auth and security: MFA, Google sign-in, marketplace OAuth and encrypted marketplace tokens",
+        ],
+        stack: ["Python", "FastAPI", "PostgreSQL", "React", "TypeScript", "Cloud Run", "Cloud SQL", "OAuth 2.0"],
+    },
+    {
         role: "Software Engineer",
         company: "BeyondChats",
-        period: "Mar 2026 – Present",
+        period: "Mar 2026 to Present",
         type: "Full-time · Remote",
-        highlight: "Built Clinic OS solo, end to end",
         impacts: [
             "Designed and shipped Clinic OS, a multi-tenant clinic management SaaS covering bookings, public booking links, patient records, check-in, prescriptions and reports, now running live in clinics",
             "Automated patient communication on WhatsApp and email: reminders with one-tap confirm, follow-up journeys, rating surveys and report delivery",
@@ -29,23 +42,23 @@ const EXPERIENCES: Experience[] = [
         stack: ["Laravel", "PHP", "PostgreSQL", "React", "Vite", "Node.js", "WhatsApp Business API", "Razorpay", "Google Calendar API", "OAuth 2.0", "GitLab CI/CD", "Playwright", "Sentry"],
     },
     {
-        role: "Software Engineer",
+        role: "Product Engineer (Full Stack)",
         company: "Turing Labs",
-        period: "Nov 2025 – Present",
+        period: "Nov 2025 to Present",
         type: "Freelance · Remote",
         impacts: [
-            "Partnering with global clients to ship production-grade SaaS and AI products end-to-end — scalable React and TypeScript frontends paired with resilient Node.js services",
-            "Designing and deploying GenAI workflows in real-world systems: RAG-based chat, semantic search, and AI copilots powered by OpenAI and Google Gemini",
+            "Shipping SaaS and AI products end to end for global clients, with React and TypeScript frontends on Node.js services",
+            "Building GenAI features for clients: RAG-based chat, semantic search and AI copilots powered by OpenAI and Google Gemini",
         ],
     },
     {
         role: "Full Stack Developer",
         company: "Votewave Consultancy",
-        period: "Apr 2025 – Mar 2026",
+        period: "May 2025 to Apr 2026",
         type: "Freelance · Contract",
         impacts: [
-            "Owned end-to-end delivery for multiple client web platforms — from architecture and full stack build to deployment, SEO, and post-launch optimization",
-            "Engineered conversion-focused MERN and Next.js applications with custom dashboards, lead capture flows, and high-performance data layers built to scale",
+            "Owned delivery of several client web platforms, from architecture and the full stack build to deployment, SEO and post-launch fixes",
+            "Built MERN and Next.js apps for clients, with custom dashboards, lead capture flows and the data layers behind them",
         ],
     },
     {
@@ -54,18 +67,18 @@ const EXPERIENCES: Experience[] = [
         period: "2025",
         type: "Contract · Remote",
         impacts: [
-            "Drove AI-powered EdTech features end-to-end — RAG-based learning chat, automated lesson and quiz generation, and semantic search across course material",
-            "Crafted responsive, high-performance interfaces in React, TypeScript, and Tailwind with polished dark and light themes tuned for daily learners",
+            "Built AI features for an EdTech platform: RAG-based learning chat, automated lesson and quiz generation, and semantic search across course material",
+            "Built responsive interfaces in React, TypeScript and Tailwind, with dark and light themes for students using it every day",
         ],
     },
     {
         role: "Software Engineer",
         company: "ModusETP",
-        period: "Aug 2023 – Apr 2025",
+        period: "Aug 2023 to Apr 2025",
         type: "Full-time · Remote",
         impacts: [
-            "Built and scaled an enterprise survey platform serving 10,000+ users, sustaining sub-300ms response times through targeted performance tuning",
-            "Lifted database query performance by 30% and accelerated frontend delivery velocity by 40% through tooling, architecture, and process upgrades across the team",
+            "Built and scaled an enterprise survey platform for 10,000+ users, keeping response times under 300ms",
+            "Cut database query times by 30% and made frontend delivery 40% faster through better tooling, architecture and team process",
         ],
     },
 ];
@@ -117,7 +130,7 @@ export default function ExperienceSection() {
                                 {e.impacts.map((imp, j) => (
                                     <li
                                         key={j}
-                                        className="type-body text-[#D7E2EA]/75 font-light pl-6 relative before:content-['—'] before:absolute before:left-0 before:text-[#D7E2EA]/40"
+                                        className="type-body text-[#D7E2EA]/75 font-light pl-6 relative before:content-['•'] before:absolute before:left-0 before:text-[#D7E2EA]/40"
                                         style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.1rem)" }}
                                     >
                                         {imp}

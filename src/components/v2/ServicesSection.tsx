@@ -7,27 +7,27 @@ const SERVICES = [
     {
         num: "01",
         name: "SaaS Web Platforms",
-        desc: "End-to-end product builds — from landing pages to multi-tenant dashboards. React, Next.js, Node, MongoDB, Supabase. Production-ready architectures shipped on time and built to scale.",
+        desc: "End-to-end product builds, from landing pages to multi-tenant dashboards, in React, Next.js, Node, MongoDB and Supabase.",
     },
     {
         num: "02",
         name: "GenAI & RAG Systems",
-        desc: "Production RAG pipelines, semantic search, AI chat, and multimodal workflows using OpenAI, Gemini, LangChain, and vector databases. Real AI products, not demos.",
+        desc: "RAG pipelines, semantic search, AI chat and multimodal workflows using OpenAI, Gemini, LangChain and vector databases, running in live products.",
     },
     {
         num: "03",
         name: "AI-Powered Features",
-        desc: "Embedding intelligence into existing apps — chat assistants, smart search, content generation, document Q&A, AI agents. Quietly capable, deeply integrated.",
+        desc: "AI added to the app you already have: chat assistants, smart search, content generation, document Q&A and AI agents.",
     },
     {
         num: "04",
         name: "Backend & API Engineering",
-        desc: "Scalable Node.js, Express, NestJS, and FastAPI services. REST + real-time, robust data layers, auth, payments, third-party integrations — engineered for reliability.",
+        desc: "Node.js, Express, NestJS and FastAPI services. REST and real-time APIs, data layers, auth, payments and third-party integrations.",
     },
     {
         num: "05",
         name: "Performance & SEO",
-        desc: "Sub-second load times, Core Web Vitals tuning, image and bundle optimization, SEO-first architecture. Sites that rank, load fast, and convert.",
+        desc: "Sub-second load times, Core Web Vitals tuning, image and bundle optimization, and SEO built in from the start.",
     },
 ];
 

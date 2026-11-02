@@ -33,7 +33,7 @@ const SITE_URL = "https://yashbisht.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Yash Bisht — Full Stack & GenAI Engineer | SaaS & AI Products",
+    default: "Yash Bisht, Full Stack & GenAI Engineer | SaaS & AI Products",
     template: "%s | Yash Bisht",
   },
   description:
@@ -71,9 +71,9 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false, email: false, address: false },
   openGraph: {
     title:
-      "Yash Bisht — Full Stack & GenAI Software Engineer",
+      "Yash Bisht, Full Stack & GenAI Software Engineer",
     description:
-      "Building production-grade SaaS and GenAI systems. React, Next.js, Node.js, RAG, OpenAI, Gemini. Currently shipping AI conversational products at BeyondChats.",
+      "I build SaaS and GenAI products that run live. React, Next.js, Node.js, RAG, OpenAI, Gemini. Currently shipping AI conversational products at BeyondChats.",
     url: SITE_URL,
     siteName: "Yash Bisht Portfolio",
     locale: "en_US",
@@ -81,9 +81,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yash Bisht — Full Stack & GenAI Software Engineer",
+    title: "Yash Bisht, Full Stack & GenAI Software Engineer",
     description:
-      "Production-grade SaaS, RAG systems, and AI-powered products. React · Next.js · Node.js · OpenAI · Gemini.",
+      "SaaS, RAG systems and AI-powered products. React · Next.js · Node.js · OpenAI · Gemini.",
     creator: "@iyash069",
     site: "@iyash069",
   },
@@ -135,7 +135,7 @@ const jsonLd = {
         "https://twitter.com/iyash069",
       ],
       description:
-        "Full Stack Developer and GenAI Engineer with 3+ years of experience designing and shipping production-grade SaaS platforms, RAG architectures, and AI-powered products.",
+        "Full Stack Developer and GenAI Engineer with 3+ years of experience designing and shipping SaaS platforms, RAG architectures, and AI-powered products.",
       knowsAbout: [
         "React",
         "Next.js",
@@ -181,7 +181,7 @@ const jsonLd = {
       knowsLanguage: ["en", "hi"],
       alumniOf: {
         "@type": "CollegeOrUniversity",
-        name: "GGSIPU – TIAS",
+        name: "GGSIPU, TIAS",
         url: "http://www.tiaspg.tecnia.in/",
       },
       worksFor: {
@@ -203,17 +203,17 @@ const jsonLd = {
       url: SITE_URL,
       name: "Yash Bisht Portfolio",
       description:
-        "Portfolio of Yash Bisht — Full Stack Developer & GenAI Engineer building production-grade SaaS platforms, RAG architectures, and AI-powered products.",
+        "Portfolio of Yash Bisht, a full stack developer and GenAI engineer who builds production SaaS platforms, RAG systems and AI-powered products.",
       inLanguage: "en-US",
       publisher: { "@id": PERSON_ID },
     },
     {
       "@type": "ProfessionalService",
-      name: "Yash Bisht — Freelance Full Stack & GenAI Engineering",
+      name: "Yash Bisht, Freelance Full Stack & GenAI Engineering",
       url: SITE_URL,
       image: `${SITE_URL}/opengraph-image`,
       description:
-        "Freelance full stack and GenAI engineering services — SaaS platforms, RAG systems, AI-powered features, backend & API engineering, performance & SEO optimization.",
+        "Freelance full stack and GenAI engineering: SaaS platforms, RAG systems, AI features, backend and API work, performance and SEO.",
       provider: { "@id": PERSON_ID },
       areaServed: "Worldwide",
       hasOfferCatalog: {
@@ -226,7 +226,7 @@ const jsonLd = {
               "@type": "Service",
               name: "SaaS Web Platforms",
               description:
-                "End-to-end product builds — landing pages to multi-tenant dashboards using React, Next.js, Node.js, MongoDB, Supabase.",
+                "End-to-end product builds, from landing pages to multi-tenant dashboards, using React, Next.js, Node.js, MongoDB and Supabase.",
             },
           },
           {
@@ -244,7 +244,7 @@ const jsonLd = {
               "@type": "Service",
               name: "AI-Powered Features",
               description:
-                "Embedding intelligence into existing apps — chat assistants, smart search, content generation, document Q&A, AI agents.",
+                "AI added to existing apps: chat assistants, smart search, content generation, document Q&A and AI agents.",
             },
           },
           {
@@ -253,7 +253,7 @@ const jsonLd = {
               "@type": "Service",
               name: "Backend & API Engineering",
               description:
-                "Scalable Node.js, Express, NestJS, FastAPI services with REST, real-time, robust data layers, auth, payments, and integrations.",
+                "Node.js, Express, NestJS and FastAPI services with REST and real-time APIs, data layers, auth, payments and integrations.",
             },
           },
           {
@@ -272,40 +272,32 @@ const jsonLd = {
       "@type": "CreativeWork",
       name: "Clinic OS",
       description:
-        "Multi-tenant clinic management SaaS by BeyondChats, built end to end by Yash Bisht — bookings, WhatsApp and email automation, Razorpay payments, Google Calendar sync, EMR import and AI lab-report summaries.",
+        "Multi-tenant clinic management SaaS by BeyondChats, built end to end by Yash Bisht: bookings, WhatsApp and email automation, Razorpay payments, Google Calendar sync, EMR import and AI lab-report summaries.",
       url: "https://clinicos.beyondchats.com/",
+      author: { "@id": PERSON_ID },
+    },
+    {
+      "@type": "CreativeWork",
+      name: "Kuinn",
+      description:
+        "Listing agent for D2C brands on Amazon and Flipkart. It checks every listing against each marketplace's rules and waits for a person to approve before publishing.",
+      url: "https://www.kuinn.in/",
       author: { "@id": PERSON_ID },
     },
     {
       "@type": "CreativeWork",
       name: "PopCom",
       description:
-        "End-to-end creator-commerce SaaS — turns creator traffic into trackable sales with smart tracking links, real-time analytics, and multi-tenant architecture.",
+        "Creator-commerce SaaS that turns creator traffic into trackable sales, with smart tracking links, real-time analytics and a multi-tenant backend.",
       url: "https://www.getpopcom.com/",
-      author: { "@id": PERSON_ID },
-    },
-    {
-      "@type": "CreativeWork",
-      name: "Dukiya Infra",
-      description:
-        "Luxury property listing platform engineered for performance, SEO, and scalability — React, Vite, Node.js, MongoDB, sub-second load times.",
-      url: "https://www.dukiyainfra.com/",
       author: { "@id": PERSON_ID },
     },
     {
       "@type": "CreativeWork",
       name: "Hariom Interior",
       description:
-        "Mumbai's premium interior design firm website — modern, performant, conversion-focused.",
+        "Website for a Mumbai interior fit-out firm, with a sector-wise project portfolio and consultation booking.",
       url: "https://www.hariominterior.in/",
-      author: { "@id": PERSON_ID },
-    },
-    {
-      "@type": "CreativeWork",
-      name: "Thread AI",
-      description:
-        "AI That Knows You — personalized AI assistant. Featured personal project showcasing applied GenAI and product design.",
-      url: "https://thread-ai-phi.vercel.app/",
       author: { "@id": PERSON_ID },
     },
   ],
@@ -343,7 +335,7 @@ export default function RootLayout({
 
         <noscript>
           <div style={{ padding: "2rem", textAlign: "center", color: "#D7E2EA" }}>
-            <h2>Yash Bisht — Full Stack &amp; GenAI Software Engineer</h2>
+            <h2>Yash Bisht, Full Stack &amp; GenAI Software Engineer</h2>
             <p>
               Full Stack Developer specializing in scalable SaaS platforms, RAG
               architectures, and AI-powered product development. View my

@@ -72,11 +72,11 @@ export default function ContactSection() {
                         className="text-[#D7E2EA]/85 font-light uppercase tracking-[0.06em] leading-[1.5] mt-6 sm:mt-8 max-w-xl mx-auto [text-wrap:balance]"
                         style={{ fontSize: "clamp(0.85rem, 1.5vw, 1.2rem)" }}
                     >
-                        Have a project in mind? Let&apos;s build something incredible together.
+                        Have a project in mind? Tell me what you&apos;re building.
                     </p>
                 </FadeIn>
 
-                {/* Book a meeting — secondary CTA */}
+                {/* Book a meeting: secondary CTA */}
                 <FadeIn y={20} delay={0.25}>
                     <div className="mt-8 sm:mt-10 flex flex-col items-center gap-3">
                         <a
@@ -89,7 +89,7 @@ export default function ContactSection() {
                             Book a 30-min Call
                         </a>
                         <span className="text-[#D7E2EA]/60 text-[11px] sm:text-xs uppercase tracking-[0.16em] font-light">
-                            — or send a message below —
+                            or send a message below
                         </span>
                     </div>
                 </FadeIn>
@@ -177,7 +177,7 @@ export default function ContactSection() {
 
                     {status === "success" && (
                         <p className="text-center text-sm text-[#3ECF8E] font-light mt-2">
-                            Message sent — I&apos;ll get back to you shortly.
+                            Message sent. I&apos;ll get back to you shortly.
                         </p>
                     )}
                     {status === "error" && (

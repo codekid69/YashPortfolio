@@ -22,10 +22,10 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
     const project = getProject(params.slug);
     if (!project) return {};
-    const title = `${project.name} — Case Study`;
+    const title = `${project.name} Case Study`;
     const description = clip(`${project.name} by Yash Bisht: ${project.description}`);
     const url = `/projects/${project.slug}`;
-    const images = [{ url: project.poster, width: 1280, height: 800, alt: `${project.name} — ${project.tagline}` }];
+    const images = [{ url: project.poster, width: 1280, height: 800, alt: `${project.name}: ${project.tagline}` }];
     return {
         title,
         description,
@@ -50,7 +50,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 "@type": "CreativeWork",
                 "@id": `${url}#work`,
                 name: project.name,
-                headline: `${project.name} — ${project.tagline}`,
+                headline: `${project.name}: ${project.tagline}`,
                 description: project.overview,
                 url,
                 sameAs: project.link,
@@ -134,7 +134,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         <ProjectMedia
                             image={project.poster}
                             video={project.video}
-                            alt={`${project.name} — ${project.tagline}, built by Yash Bisht`}
+                            alt={`${project.name}: ${project.tagline}, built by Yash Bisht`}
                             sizes="(max-width: 1200px) 100vw, 1150px"
                         />
                     </div>
@@ -177,7 +177,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                                 {project.highlights.map((h) => (
                                     <li
                                         key={h}
-                                        className="type-body font-light text-[#D7E2EA]/80 pl-6 relative before:content-['—'] before:absolute before:left-0 before:text-[#D7E2EA]/40"
+                                        className="type-body font-light text-[#D7E2EA]/80 pl-6 relative before:content-['•'] before:absolute before:left-0 before:text-[#D7E2EA]/40"
                                         style={{ fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)" }}
                                     >
                                         {h}
